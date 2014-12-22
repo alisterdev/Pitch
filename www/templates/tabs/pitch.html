@@ -1,4 +1,7 @@
-<ion-view title="{{ pitch.title }}">
+<ion-view>
+  <ion-nav-title>
+    <h1 class="title">{{ pitch.title }}</h1>
+  </ion-nav-title>
   <ion-nav-buttons side="right">
     <button class="button button-icon button-favorite ion-ios-heart" ng-class="{ 'ion-ios-heart-outline': !isFavorite }" on-release="favoritePitch()"></button>
   </ion-nav-buttons>
