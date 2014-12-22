@@ -1,0 +1,20 @@
+// The path for our ionicons font files, relative to the built CSS in www/css
+$ionicons-font-path: "../lib/ionicons/fonts" !default;
+$button-border-radius: 0;
+
+// Include all of Ionic
+@import "www/lib/ionic/scss/ionic";
+@import "www/lib/ionicons/scss/ionicons";
+
+@import "variables";
+@import "items";
+@import "buttons";
+@import "icons";
+@import "text";
+@import "cards";
+@import "blocky";
+@import "borders";
+@import "colors";
+@import "bars";
+@import "images";
+@import "spacing";

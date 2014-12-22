@@ -1,0 +1,54 @@
+// Content
+.scroll {
+  height: 100%;
+}
+
+// Margin
+.margin-top {
+  margin-top: $content-padding;
+}
+
+.no-margin {
+  margin: 0;
+}
+
+// Padding
+.padding-bottom {
+  padding-bottom: $content-padding;
+}
+
+.no-padding {
+  padding: 0;
+}
+
+// Centering
+.vertical-center-container {
+  height: 100%;
+
+  @include display-flex();
+  @include justify-content(center);
+  @include align-items(center);
+
+  .vertical-center {
+    @include display-flex();
+    @include flex-direction(column);
+  }
+}
+
+.vertical-bottom-container {
+  height: 100%;
+
+  @include display-flex();
+  @include justify-content(center);
+  @include align-items(flex-end);
+
+  .vertical-bottom {
+    @include display-flex();
+    @include flex-direction(column);
+  }
+}
+
+.photo-viewer {
+  height: 100%;
+  margin-top: -44px;
+}

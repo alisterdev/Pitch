@@ -1,0 +1,19 @@
+.item-radio {
+  .radio-icon {
+    line-height: 24px;
+  }
+
+  input:checked ~ .item-content,
+  input:checked ~ .radio-icon {
+    color: $positive;
+    background: initial;
+  }
+}
+
+.item-input-inset {
+  // Override look in nav-bar
+  &.nav-bar-title {
+    padding: 0;
+    padding-top: 5px;
+  }
+}

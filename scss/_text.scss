@@ -1,0 +1,21 @@
+.text-bold {
+  font-weight: bold;
+}
+
+.text-large {
+  font-size: $font-size-large;
+}
+
+.text-uppercase {
+  text-transform: uppercase;
+}
+
+.text-thin {
+  font-weight: 300;
+}
+
+.text-featurette {
+  @extend .text-thin;
+  @extend .text-uppercase;
+  letter-spacing: 3px;
+}

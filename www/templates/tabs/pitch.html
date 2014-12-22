@@ -1,0 +1,52 @@
+<ion-view title="{{ pitch.title }}">
+  <ion-nav-buttons side="right">
+    <button class="button button-icon button-favorite ion-ios-heart" ng-class="{ 'ion-ios-heart-outline': !isFavorite }" on-release="favoritePitch()"></button>
+  </ion-nav-buttons>
+  <ion-content>
+
+    <div class="card-image" ng-background="pitch.image" on-tap="showModalPhoto()">
+      <div class="card-overlay vertical-center-container">
+        <h3 class="vertical-center text-featurette text-center blocky blocky-light blocky-center">{{ pitch.title }}</h3>
+      </div>
+    </div>
+
+    <div class="padding">
+      <div class="button-bar">
+        <button class="button button-balanced">{{ pitch.price | currency }}</button>
+        <button class="button button-outline button-balanced" on-tap="showModalPitch()">Pitch In</button>
+      </div>
+
+      <div class="button-bar margin-top">
+        <button class="button button-positive icon-left ion-ios-people">{{ pitch.pitchers.contributed.length }} / {{ pitch.pitchers.required }}</button>
+        <button class="button button-outline button-positive icon-left ion-ios-calendar-outline" on-tap="addCalendarEvent()">{{ pitch.date | date }}</button>
+      </div>
+
+      <div class="background-image" ng-background="pitch.creator.image">
+        <div class="blocky no-padding margin-top blocky-image">
+          <div class="card-overlay-light">
+            <p class="text-featurette no-margin color-gray">Organizer</p>
+            <p class="text-large text-featurette no-margin">{{ pitch.creator.name.first + ' ' + pitch.creator.name.last }}</p>
+            <p><stars class="energized" repeat="4.5"></stars></p>
+          </div>
+        </div>
+        <div class="button-bar button-bar-light">
+          <button class="button button-outline button-dark">View Profile</button>
+          <button class="button button-outline button-dark">Contact {{ pitch.creator.name.first }}</button>
+        </div>
+      </div>
+
+      <div class="blocky margin-top">
+        <p class="text-featurette text-center"><i class="icon ion-ios-medical"></i> What You're Getting</p>
+        <p class="text-large">{{ pitch.description }}</p>
+      </div>
+
+      <div class="margin-top blocky blocky-assertive">
+        <p class="text-featurette text-center"><i class="icon ion-ios-location assertive"></i> Where To Meet</p>
+      </div>
+
+      <button class="button button-block button-outline button-positive icon-right ion-ios-upload-outline">Share</button>
+    </div>
+    
+
+  </ion-content>
+</ion-view>

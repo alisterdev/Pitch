@@ -1,0 +1,14 @@
+<ion-view title="Favorites">
+  <ion-content>
+
+    <ion-refresher pulling-icon="ion-ios-arrow-up" on-refresh="getFavorites(true)"></ion-refresher>
+
+    <div class="vertical-center-container" ng-if="!favorites.length">
+      <div class="vertical-center text-center">
+        <i class="icon icon-large ion-ios-heart assertive"></i>
+        <p>Looks like you haven't<br/>favorited anything...</p>
+      </div>
+    </div>
+
+  </ion-content>
+</ion-view>

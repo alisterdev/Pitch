@@ -1,0 +1,25 @@
+.button {
+  &.button-search {
+    min-height: $button-height;
+  }
+
+  &.button-bold {
+    font-weight: 500 !important;
+  }
+
+  &.button-favorite {
+    @extend .assertive;
+
+    &:hover,
+    &.active,
+    &.activated {
+      color: $assertive;
+    }
+  }
+}
+
+.button-bar {
+  &.button-bar-light {
+    background-color: $background-light;
+  }
+}
