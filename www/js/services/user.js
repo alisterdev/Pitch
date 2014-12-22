@@ -1,6 +1,6 @@
 angular.module('app')
 
-.factory('UserService', function () {
+.factory('UserService', function (localStorageService) {
   var user = {
     id: 1337,
     firstName: 'John',
@@ -15,6 +15,22 @@ angular.module('app')
 
     set: function (user) {
       this.user = user;
+    },
+
+    isLoggedIn: function (value) {
+      if (typeof value === 'boolean') {
+        localStorageService.set('skipLogin', value)
+      }
+
+      return localStorageService.get('skipLogin');
+    },
+
+    hasViewedIntro: function (value) {
+      if (typeof value === 'boolean') {
+        localStorageService.set('skipIntro', value);
+      }
+
+      return localStorageService.get('skipIntro');
     }
   };
 });
