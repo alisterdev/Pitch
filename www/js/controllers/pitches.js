@@ -1,6 +1,6 @@
 angular.module('app')
 
-.controller('PitchCtrl', function ($scope, $stateParams, $ionicModal, $ionicSlideBoxDelegate, PitchesResource) {
+.controller('PitchCtrl', function ($scope, $stateParams, $ionicModal, $ionicLoading, $ionicSlideBoxDelegate, PitchesResource) {
   // Test data
   $scope.rating = 5;
 
@@ -20,8 +20,21 @@ angular.module('app')
 
   // Favorite pitch
   $scope.favoritePitch = function () {
-    // Test data
-    $scope.isFavorite = true;
+    $scope.isFavorite = !$scope.isFavorite;
+    var icon = 'ion-ios-heart'
+      , message = 'Favorited';
+
+    if (!$scope.isFavorite) {
+      icon = icon + '-outline';
+      message = 'Unfavorited';
+    }
+
+    // Show confirmation message
+    $ionicLoading.show({
+      template: '<i class="icon icon-large ' + icon + ' assertive"></i> <p class="no-margin">' + message + '</p>',
+      duration: 1000,
+      noBackdrop: true
+    });
   };
 
   // Add calendar event for pitch
