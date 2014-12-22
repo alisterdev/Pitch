@@ -1,0 +1,50 @@
+.card.card-featured {
+  width: 100%;
+  min-height: 175px;
+  margin: 0;
+  padding: 0;
+}
+
+.card-image {
+  width: 100%;
+  height: 175px;
+
+  background-color: $dark;
+  background-size: cover;
+}
+
+.card-thumbnail {
+  @extend .card-image;
+
+  height: 75px;
+}
+
+.card-overlay {
+  width: 100%;
+  height: 100%;
+  padding: $content-padding;
+  color: white;
+
+  background-color: $background-light-dark;
+
+  * {
+    color: inherit;
+  }
+}
+
+.card-overlay-light {
+  @extend .card-overlay;
+  color: $dark;
+  background-color: $background-light;
+}
+
+.card-overlay-title {
+  @extend .card-overlay;
+  padding: 0;
+  background-color: transparent;
+
+  .card-title {
+    padding: $content-padding;
+    background-color: $background-light-dark;
+  }
+}

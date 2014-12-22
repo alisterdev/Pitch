@@ -1,0 +1,38 @@
+.blocky {
+  border: 1px solid $dark;
+  padding: $content-padding;
+
+  &.blocky-light {
+    border-color: $light;
+  }
+
+  &.blocky-positive {
+    @extend .border-positive;
+  }
+
+  &.blocky-assertive {
+    @extend .border-assertive;
+  }
+
+  &.blocky-small {
+    padding: $content-padding / 2;
+  }
+
+  &.blocky-center {
+    display: inline-table;
+    align-self: center;
+  }
+
+  &.blocky-image {
+    background-size: cover;
+    background-position: center;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.blocky + .button-bar .button {
+  border-top: 0;
+}

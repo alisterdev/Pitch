@@ -1,0 +1,13 @@
+{
+  "name": "pitch-app",
+  "private": "true",
+  "devDependencies": {
+    "ionic": "driftyco/ionic-bower#1.0.0-beta.14"
+  },
+  "dependencies": {
+    "ionic-contrib-icon": "~0.0.3",
+    "ionicons": "~2.0.0",
+    "angular-cached-resource": "~1.0.7",
+    "angular-local-storage": "~0.1.5"
+  }
+}

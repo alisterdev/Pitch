@@ -1,0 +1,15 @@
+<ion-modal-view>
+  <ion-header-bar>
+    <h1 class="title">Categories</h1>
+    <button class="button button-clear button-positive" on-release="hideCategories()">Cancel</button>
+  </ion-header-bar>
+  <ion-content>
+
+    <ion-list>
+      <ion-radio ng-repeat="c in categories" ng-model="$parent.selectedCategory" ng-value="c" ng-change="selectCategory(c)" icon="ion-ios-checkmark-empty">
+        {{ c.title }}
+      </ion-radio>
+    </ion-list>
+
+  </ion-content>
+</ion-modal-view>
