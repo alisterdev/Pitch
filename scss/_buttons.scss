@@ -16,6 +16,11 @@
       color: $assertive;
     }
   }
+
+  &.button-block-no-margin {
+    @extend .button-block;
+    @extend .no-margin;
+  }
 }
 
 .button-bar {

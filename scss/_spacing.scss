@@ -30,6 +30,7 @@
   @include align-items(center);
 
   .vertical-center {
+    width: 100%;
     @include display-flex();
     @include flex-direction(column);
   }

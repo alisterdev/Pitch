@@ -1,0 +1,57 @@
+<ion-view title="Welcome to Pitch">
+  <ion-content scroll="false">
+
+    <ion-slide-box class="scroll" show-pager="false" on-slide-changed="slideChanged($index)" delegate-handle="introSlideBox">
+      <ion-slide>
+        <div class="vertical-center-container">
+          <div class="vertical-center padding">
+            <p class="text-large">
+              Pitch is a mobile app that lets students split their daily expenses with other students at their university. Students can pitch large quantity purchases, and ask if anyone else is interested in pitching in to share the costs and items bought.
+            </p>
+          </div>
+        </div>
+      </ion-slide>
+      <ion-slide>
+        <div class="vertical-center-container">
+          <div class="vertical-center padding text-center">
+            <h3>Find</h3>
+
+            
+          </div>
+        </div>
+      </ion-slide>
+      <ion-slide>
+        <div class="vertical-center-container">
+          <div class="vertical-center padding text-center">
+            <h3>Post</h3>
+
+            
+          </div>
+        </div>
+      </ion-slide>
+      <ion-slide>
+        <div class="vertical-center-container">
+          <div class="vertical-center padding text-center">
+            <h3>Contribute</h3>
+
+            
+          </div>
+        </div>
+      </ion-slide>
+      <ion-slide>
+        <div class="vertical-center-container">
+          <div class="vertical-center padding text-center">
+            <h3>Community</h3>
+
+            
+          </div>
+        </div>
+      </ion-slide>
+    </ion-slide-box>
+
+  </ion-content>
+  <ion-footer-bar>
+    <button ng-hide="isEnd" class="button button-block-no-margin button-clear button-positive" on-tap="next()">Next</button>
+    <button ng-show="isEnd" class="button button-block-no-margin button-clear button-positive" on-tap="viewLogin()">I'm Ready</button>
+  </ion-footer-bar>
+</ion-view>
