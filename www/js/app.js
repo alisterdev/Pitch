@@ -1,7 +1,7 @@
-angular.module('app', ['ionic', 'ionic.contrib.icon', 'ngResource', 'LocalStorageModule', 'ngCachedResource'])
+angular.module('app', ['ionic', 'ionic.contrib.icon', 'ngResource', 'LocalStorageModule', 'ngCachedResource', 'uiGmapgoogle-maps'])
 
-.run(function($ionicPlatform) {
-  $ionicPlatform.ready(function() {
+.run(function ($ionicPlatform) {
+  $ionicPlatform.ready( function() {
     if (window.StatusBar) {
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
@@ -9,8 +9,16 @@ angular.module('app', ['ionic', 'ionic.contrib.icon', 'ngResource', 'LocalStorag
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function ($stateProvider, $urlRouterProvider, uiGmapGoogleMapApiProvider) {
 
+  // Configure Google Maps
+  uiGmapGoogleMapApiProvider.configure({
+    key: '',
+    v: '3.17',
+    libraries: 'geometry,visualization'
+  });
+
+  // Configure states
   $stateProvider
 
   .state('intro', {
@@ -32,7 +40,6 @@ angular.module('app', ['ionic', 'ionic.contrib.icon', 'ngResource', 'LocalStorag
     controller: 'TabsCtrl'
   })
 
-  // Routes
   .state('tab.featured', {
     url: '/featured',
     views: {

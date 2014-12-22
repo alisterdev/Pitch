@@ -44,8 +44,11 @@
         <p class="text-large">{{ pitch.description }}</p>
       </div>
 
-      <div class="margin-top blocky blocky-assertive">
-        <p class="text-featurette text-center"><i class="icon ion-ios-location assertive"></i> Where To Meet</p>
+      <div class="blocky blocky-assertive no-padding margin-top">
+        <p class="text-featurette text-center margin-top "><i class="icon ion-ios-location assertive"></i> Where To Meet</p>
+        <ui-gmap-google-map center="map.center" pan="true" zoom="map.zoom" control="map.control" options="map.options">
+          <ui-gmap-markers models="map.markers" coords="'self'" icon="'icon'"></ui-gmap-markers>
+        </ui-gmap-google-map>
       </div>
 
       <button class="button button-block button-outline button-positive icon-right ion-ios-upload-outline">Share</button>
