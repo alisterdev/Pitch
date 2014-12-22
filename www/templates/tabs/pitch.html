@@ -24,15 +24,16 @@
         <button class="button button-outline button-positive icon-left ion-ios-calendar-outline" on-tap="addCalendarEvent()">{{ pitch.date | date }}</button>
       </div>
 
-      <div class="background-image" ng-background="pitch.creator.image">
-        <div class="blocky no-padding margin-top blocky-image">
-          <div class="card-overlay-light">
+      <div>
+        <div class="blocky margin-top">
+          <div class="background-thumbnail" ng-background="pitch.creator.image"></div>
+          <div>
             <p class="text-featurette no-margin color-gray">Organizer</p>
             <p class="text-large text-featurette no-margin">{{ pitch.creator.name.first + ' ' + pitch.creator.name.last }}</p>
             <p><stars class="energized" repeat="4.5"></stars></p>
           </div>
         </div>
-        <div class="button-bar button-bar-light">
+        <div class="button-bar">
           <button class="button button-outline button-dark">View Profile</button>
           <button class="button button-outline button-dark">Contact {{ pitch.creator.name.first }}</button>
         </div>
