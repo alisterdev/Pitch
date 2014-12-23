@@ -45,6 +45,8 @@ angular.module('app')
       // Determine if favorite
       if (typeof UserService.favorites()[$scope.pitch._id] !== 'undefined') {
         $scope.isFavorite = true;
+      } else {
+        $scope.isFavorite = false;
       }
     });
   };
@@ -119,6 +121,8 @@ angular.module('app')
     $scope.modalPitch.remove();
   };
 
-  // Get pitch
-  $scope.getPitch();
+  // Get pitch when view entered
+  $scope.$on('$ionicView.enter', function () {
+    $scope.getPitch();
+  });
 });

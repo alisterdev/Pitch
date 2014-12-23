@@ -1,7 +1,7 @@
 <ion-view>
   <ion-nav-title></ion-nav-title>
   <ion-nav-buttons side="right">
-    <button class="button button-icon button-favorite ion-ios-heart" ng-class="{ 'ion-ios-heart-outline': !isFavorite }" on-release="favoritePitch()"></button>
+    <button class="button button-icon button-favorite" ng-class="{ 'ion-ios-heart': isFavorite, 'ion-ios-heart-outline': !isFavorite }" on-release="favoritePitch()"></button>
   </ion-nav-buttons>
   <ion-content>
 
