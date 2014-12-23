@@ -1,13 +1,10 @@
 angular.module('app')
 
 .controller('PitchCtrl', function ($scope, $stateParams, $ionicModal, $ionicLoading, $ionicSlideBoxDelegate, uiGmapGoogleMapApi, PitchesResource, UserService) {
-  // Test data
-  $scope.rating = 5;
-
   // Get pitch id
   var id = $stateParams.id;
 
-  // Default map data
+  // Default data
   $scope.map = {
     markers: [],
     control: {},
@@ -21,12 +18,16 @@ angular.module('app')
       disableDefaultUI: true
     }
   };
+  $scope.rating = 5;
 
   $scope.getPitch = function (noCache) {
     var res = PitchesResource.get({ id: id });
 
     res.$promise.then(function () {
       $scope.pitch = res;
+
+      // Determine rating
+      $scope.rating = $scope.pitch.creator.rating.likes / $scope.pitch.creator.rating.dislikes;
 
       // Set center for map
       $scope.map.center = $scope.pitch.location;
