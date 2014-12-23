@@ -1,6 +1,6 @@
 angular.module('app')
 
-.controller('TabsCtrl', function ($scope, $state, UserService) {
+.controller('TabsCtrl', function ($scope, $state, $ionicHistory, UserService) {
 
   // Check once if need to show intro
   if (!UserService.hasViewedIntro()) {
@@ -13,7 +13,14 @@ angular.module('app')
   }
 
   $scope.select = function (state) {
-    $state.go('tab.' + state);
+    var backView = $ionicHistory.backView()
+      , state = 'tab.' + state;
+
+    if (backView !== null && backView.stateName == state) {
+      $ionicHistory.goBack();
+    } else {
+      $state.go(state);
+    }
   };
 
 });
