@@ -13,8 +13,12 @@ angular.module('app')
       return user;
     },
 
-    set: function (user) {
-      this.user = user;
+    favorites: function (favorites) {
+      if (typeof favorites === 'object') {
+        localStorageService.set('favorites', favorites);
+      }
+
+      return localStorageService.get('favorites') || {};
     },
 
     isLoggedIn: function (value) {

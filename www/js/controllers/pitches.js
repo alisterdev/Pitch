@@ -1,6 +1,6 @@
 angular.module('app')
 
-.controller('PitchCtrl', function ($scope, $stateParams, $ionicModal, $ionicLoading, $ionicSlideBoxDelegate, uiGmapGoogleMapApi, PitchesResource) {
+.controller('PitchCtrl', function ($scope, $stateParams, $ionicModal, $ionicLoading, $ionicSlideBoxDelegate, uiGmapGoogleMapApi, PitchesResource, UserService) {
   // Test data
   $scope.rating = 5;
 
@@ -40,6 +40,11 @@ angular.module('app')
 
       // Set data for photo viewer
       $scope.photos = [$scope.pitch.image];
+
+      // Determine if favorite
+      if (typeof UserService.favorites()[$scope.pitch._id] !== 'undefined') {
+        $scope.isFavorite = true;
+      }
     });
   };
 
@@ -47,12 +52,22 @@ angular.module('app')
   $scope.favoritePitch = function () {
     $scope.isFavorite = !$scope.isFavorite;
     var icon = 'ion-ios-heart'
-      , message = 'Favorited';
+      , message = 'Favorited'
+      , favorites = UserService.favorites();
 
     if (!$scope.isFavorite) {
       icon = icon + '-outline';
       message = 'Unfavorited';
+
+      // Remove stored favorite
+      delete favorites[$scope.pitch._id];
+    } else {
+      // Store favorite
+      favorites[$scope.pitch._id] = $scope.pitch;
     }
+
+    // Store new favorites
+    UserService.favorites(favorites);
 
     // Show confirmation message
     $ionicLoading.show({

@@ -1,9 +1,16 @@
 <ion-view title="Favorites">
   <ion-content>
 
-    <ion-refresher pulling-icon="ion-ios-arrow-up" on-refresh="getFavorites(true)"></ion-refresher>
+    <ion-list>
+      <ion-item class="item-avatar" ng-repeat="(id, pitch) in favorites">
+        <p >#{{ $index + 1 }}</p>
+        <h2>{{ pitch.title }}</h2>
+        <p>{{ pitch.creator.name.first + ' ' + pitch.creator.name.last }}</p>
+        <ion-option-button class="button-assertive" on-tap="removeFavorite(id)">Remove</ion-option-button>
+      </ion-item>
+    </ion-list>
 
-    <div class="vertical-center-container" ng-if="!favorites.length">
+    <div class="vertical-center-container" ng-if="angular.isUndefined(favorites)">
       <div class="vertical-center text-center">
         <i class="icon icon-large ion-ios-heart assertive"></i>
         <p>Looks like you haven't<br/>favorited anything...</p>

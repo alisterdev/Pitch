@@ -1,24 +1,14 @@
 angular.module('app')
 
-.controller('FavoritesCtrl', function ($scope, FavoritesResource, UserService) {
+.controller('FavoritesCtrl', function ($scope, UserService) {
 
-  // Test data
-  $scope.favorites = [];
-  var user = UserService.get();
+  $scope.getFavorites = function () {
+    $scope.favorites = UserService.favorites();
+  };
 
-  $scope.getFavorites = function (noCache) {
-    var res = FavoritesResource.query({ user: user.id });
-
-    if (noCache) {
-      res.$httpPromise.then(function () {
-        $scope.favorites = res;
-        $scope.$broadcast('scroll.refreshComplete');
-      });
-    } else {
-      res.$promise.then(function () {
-        $scope.favorites = res;
-      });
-    }
+  $scope.removeFavorite = function (id) {
+    delete $scope.favorites[id];
+    UserService.favorites($scope.favorites);
   };
 
   // Get favorites
