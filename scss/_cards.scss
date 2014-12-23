@@ -48,3 +48,18 @@
     background-color: $background-light-dark;
   }
 }
+
+.card-item {
+  @extend .item;
+  padding: $content-padding;
+  font-size: $font-size-base + 2px;
+
+  > h3 {
+    font-size: inherit;
+  }
+
+  .row,
+  .col {
+    padding: 0;
+  }
+}

@@ -8,12 +8,27 @@
   <ion-content scroll="false">
 
     <!-- Search results -->
-    <ion-list>
-
-    </ion-list>
+    <div class="scroll" ng-hide="!results.length" ng-repeat="r in results">
+      <ion-scroll class="scroll">
+        <div class="card card-featured" on-tap="viewPitch(r._id)">
+          <div class="card-image" background-image="r.image"></div>
+          <div class="card-item">
+            <h3>{{ r.title }}</h3>
+            <div class="row">
+              <div class="col">
+                Price: {{ r.price | currency }}
+              </div>
+              <div class="col text-right">
+                Pitchers: {{ r.pitchers.contributed.length }}/{{ r.pitchers.required }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </ion-scroll>
+    </div>
 
     <!-- Trending searches -->
-    <div class="vertical-center-container">
+    <div class="vertical-center-container" ng-show="!results.length">
       <div class="vertical-center">
         <h4 class="text-center">Trending Searches</h4>
         <button class="button button-clear button-positive button-search" ng-repeat="t in trending" on-release="search(t)">{{ t }}</button>
