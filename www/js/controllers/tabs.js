@@ -12,15 +12,4 @@ angular.module('app')
     $state.go('login');
   }
 
-  $scope.select = function (state) {
-    var backView = $ionicHistory.backView()
-      , state = 'tab.' + state;
-
-    if (backView !== null && backView.stateName == state) {
-      $ionicHistory.goBack();
-    } else {
-      $state.go(state);
-    }
-  };
-
 });
