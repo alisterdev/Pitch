@@ -3,8 +3,6 @@ angular.module('app')
 .controller('FavoritesCtrl', function ($scope, UserService) {
 
   $scope.getFavorites = function () {
-    console.log(UserService.favorites());
-
     $scope.favorites = UserService.favorites();
   };
 
