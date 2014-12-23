@@ -135,7 +135,7 @@ angular.module('app')
 
   // Pitch functionality
   $scope.showModalPitch = function () {
-    $ionicModal.fromTemplateUrl('templates/modals/pitch.html', {
+    $ionicModal.fromTemplateUrl('templates/modals/contribute.html', {
       scope: $scope
     }).then(function (modal) {
       $scope.modalPitch = modal;
