@@ -20,6 +20,14 @@ angular.module('app')
   };
   $scope.rating = 0;
 
+  function updateFavorite (id) {
+    if (typeof UserService.favorites()[$scope.pitch._id] !== 'undefined') {
+      $scope.isFavorite = true;
+    } else {
+      $scope.isFavorite = false;
+    }
+  }
+
   $scope.getPitch = function (noCache) {
     var res = PitchesResource.get({ id: id });
 
@@ -43,11 +51,7 @@ angular.module('app')
       $scope.photos = [$scope.pitch.image];
 
       // Determine if favorite
-      if (typeof UserService.favorites()[$scope.pitch._id] !== 'undefined') {
-        $scope.isFavorite = true;
-      } else {
-        $scope.isFavorite = false;
-      }
+      updateFavorite($scope.pitch._id);
     });
   };
 
@@ -121,8 +125,13 @@ angular.module('app')
     $scope.modalPitch.remove();
   };
 
-  // Get pitch when view entered
+  // Update favorite status when view enter
   $scope.$on('$ionicView.enter', function () {
-    $scope.getPitch();
+    if (typeof $scope.pitch !== 'undefined') {
+      updateFavorite($scope.pitch._id);
+    }
   });
+
+  // Get pitch
+  $scope.getPitch();
 });

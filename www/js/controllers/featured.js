@@ -54,7 +54,7 @@ angular.module('app')
 
   // Get pitches when view is active
   $scope.$on('$ionicView.enter', function () {
-    if (typeof $scope.categories !== 'undefined') {
+    if (typeof $scope.pitches === 'undefined') {
       getPitches();
     }
   });
