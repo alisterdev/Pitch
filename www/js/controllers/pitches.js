@@ -1,6 +1,6 @@
 angular.module('app')
 
-.controller('PitchCtrl', function ($scope, $stateParams, $ionicModal, $ionicLoading, $ionicSlideBoxDelegate, uiGmapGoogleMapApi, PitchesResource, UserService) {
+.controller('PitchCtrl', function ($scope, $stateParams, $ionicModal, $ionicLoading, $ionicSlideBoxDelegate, $ionicPlatform, $cordovaCalendar, uiGmapGoogleMapApi, PitchesResource, UserService) {
   // Get pitch id
   var id = $stateParams.id;
 
@@ -86,7 +86,26 @@ angular.module('app')
 
   // Add calendar event for pitch
   $scope.addCalendarEvent = function () {
-
+    // Check if ready to safely run Cordova plugin
+    $ionicPlatform.ready(function () {
+      $cordovaCalendar.createEvent({
+        title: $scope.pitch.title,
+        notes: $scope.pitch.description,
+        startDate: $scope.pitch.date
+      }).then(function (result) {
+        $ionicLoading.show({
+          template: '<i class="icon ion-ios-calendar"></i> <p class="no-margin">Added to Calendar</p>',
+          duration: 1000,
+          noBackdrop: true
+        });
+      }).error(function (err) {
+        $ionicLoading.show({
+          template: 'There was a problem adding to calendar.',
+          duration: 1000,
+          noBackdrop: true
+        });
+      });
+    });
   };
 
   // Photo functionality
