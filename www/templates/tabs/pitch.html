@@ -1,7 +1,5 @@
 <ion-view>
-  <ion-nav-title>
-    <h1 class="title">{{ pitch.title }}</h1>
-  </ion-nav-title>
+  <ion-nav-title></ion-nav-title>
   <ion-nav-buttons side="right">
     <button class="button button-icon button-favorite ion-ios-heart" ng-class="{ 'ion-ios-heart-outline': !isFavorite }" on-release="favoritePitch()"></button>
   </ion-nav-buttons>
@@ -19,17 +17,17 @@
         <button class="button button-outline button-balanced" on-tap="showModalPitch()">Pitch In</button>
       </div>
 
-      <div class="button-bar margin-top">
-        <button class="button button-positive icon-left ion-ios-people">{{ pitch.pitchers.contributed.length }} / {{ pitch.pitchers.required }}</button>
-        <button class="button button-outline button-positive icon-left ion-ios-calendar-outline" on-tap="addCalendarEvent()">{{ pitch.date | date }}</button>
+      <div class="margin-top">
+        <button class="button button-block-no-margin button-positive icon-left ion-ios-people">{{ pitch.pitchers.contributed.length }} / {{ pitch.pitchers.required }} contributed</button>
+        <button class="button button-outline button-block-no-margin button-positive icon-left ion-ios-calendar-outline" on-tap="addCalendarEvent()">{{ pitch.date | date }}</button>
       </div>
 
       <div>
         <div class="blocky margin-top">
           <div class="background-thumbnail" ng-background="pitch.creator.image"></div>
           <div>
-            <p class="text-featurette no-margin color-gray">Organizer</p>
-            <p class="text-large text-featurette no-margin">{{ pitch.creator.name.first + ' ' + pitch.creator.name.last }}</p>
+            <p class="text-small text-featurette no-margin color-gray">Organizer</p>
+            <p class="text-featurette no-margin">{{ pitch.creator.name.first + ' ' + pitch.creator.name.last }}</p>
             <p><stars class="energized" repeat="4.5"></stars></p>
           </div>
         </div>
@@ -41,7 +39,7 @@
 
       <div class="blocky margin-top">
         <p class="text-featurette text-center"><i class="icon ion-ios-medical"></i> What You're Getting</p>
-        <p class="text-large">{{ pitch.description }}</p>
+        <p>{{ pitch.description }}</p>
       </div>
 
       <div class="blocky blocky-assertive no-padding margin-top">
