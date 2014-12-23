@@ -10,7 +10,7 @@ angular.module('app')
   ];
 
   $scope.search = function (query) {
-    var res = PitchesResource.query({ title: query });
+    var res = PitchesResource.search({ title: query });
 
     res.$httpPromise.then(function () {
       $scope.results = res;
