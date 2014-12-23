@@ -1,4 +1,4 @@
-angular.module('app', ['ionic', 'ionic.contrib.icon', 'ngResource', 'LocalStorageModule', 'ngCachedResource', 'uiGmapgoogle-maps'])
+angular.module('app', ['ionic', 'ionic.contrib.icon', 'ngResource', 'LocalStorageModule', 'ngCachedResource', 'uiGmapgoogle-maps', 'ngCordova'])
 
 .run(function ($ionicPlatform) {
   $ionicPlatform.ready( function() {

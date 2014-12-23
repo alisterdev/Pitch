@@ -9,6 +9,7 @@
     "ionicons": "~2.0.0",
     "angular-cached-resource": "~1.0.7",
     "angular-local-storage": "~0.1.5",
-    "angular-google-maps": "~2.0.12"
+    "angular-google-maps": "~2.0.12",
+    "ngCordova": "~0.1.9-alpha"
   }
 }
