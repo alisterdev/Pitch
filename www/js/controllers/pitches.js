@@ -18,7 +18,7 @@ angular.module('app')
       disableDefaultUI: true
     }
   };
-  $scope.rating = 5;
+  $scope.rating = 0;
 
   $scope.getPitch = function (noCache) {
     var res = PitchesResource.get({ id: id });
