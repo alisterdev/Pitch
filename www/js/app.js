@@ -51,10 +51,10 @@ angular.module('app', ['ionic', 'ionic.contrib.icon', 'ngResource', 'LocalStorag
   })
 
   .state('tab.featured-details', {
-    url: '/pitch/:id',
+    url: '/featured/:id',
     views: {
       'tab-featured': {
-        templateUrl: 'templates/tabs/pitch.html',
+        templateUrl: 'templates/tabs/pitch/details.html',
         controller: 'PitchCtrl'
       }
     }
@@ -81,10 +81,10 @@ angular.module('app', ['ionic', 'ionic.contrib.icon', 'ngResource', 'LocalStorag
   })
 
   .state('tab.search-details', {
-    url: '/pitch/:id',
+    url: '/search/:id',
     views: {
       'tab-search': {
-        templateUrl: 'templates/tabs/pitch.html',
+        templateUrl: 'templates/tabs/pitch/details.html',
         controller: 'PitchCtrl'
       }
     }
