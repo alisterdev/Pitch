@@ -5,7 +5,7 @@
       <ion-item class="item-avatar" ng-repeat="(id, pitch) in favorites">
         <p >#{{ $index + 1 }}</p>
         <h2>{{ pitch.title }}</h2>
-        <p>{{ pitch.creator.name.first + ' ' + pitch.creator.name.last }}</p>
+        <p>{{ pitch.creator }}</p>
         <ion-option-button class="button-assertive" on-tap="removeFavorite(id)">Remove</ion-option-button>
       </ion-item>
     </ion-list>

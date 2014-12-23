@@ -69,8 +69,11 @@ angular.module('app')
       // Remove stored favorite
       delete favorites[$scope.pitch._id];
     } else {
-      // Store favorite
-      favorites[$scope.pitch._id] = $scope.pitch;
+      // Store only necessary data in favorite
+      favorites[$scope.pitch._id] = {
+        title: $scope.pitch.title,
+        creator: $scope.pitch.creator.name.first + ' ' + $scope.pitch.creator.name.last
+      };
     }
 
     // Store new favorites
