@@ -1,6 +1,6 @@
 angular.module('app')
 
-.controller('PitchCtrl', function ($scope, $stateParams, $ionicModal, $ionicLoading, $ionicSlideBoxDelegate, $ionicPlatform, $cordovaCalendar, uiGmapGoogleMapApi, PitchesResource, UserService) {
+.controller('DetailsCtrl', function ($scope, $stateParams, $ionicModal, $ionicLoading, $ionicSlideBoxDelegate, $ionicPlatform, $cordovaCalendar, uiGmapGoogleMapApi, PitchesResource, UserService) {
   // Get pitch id
   var id = $stateParams.id;
 

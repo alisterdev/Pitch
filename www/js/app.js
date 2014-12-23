@@ -55,7 +55,7 @@ angular.module('app', ['ionic', 'ionic.contrib.icon', 'ngResource', 'LocalStorag
     views: {
       'tab-featured': {
         templateUrl: 'templates/tabs/pitch/details.html',
-        controller: 'PitchCtrl'
+        controller: 'DetailsCtrl'
       }
     }
   })
@@ -80,12 +80,22 @@ angular.module('app', ['ionic', 'ionic.contrib.icon', 'ngResource', 'LocalStorag
     }
   })
 
+  .state('tab.pitch', {
+    url: '/pitch',
+    views: {
+      'tab-pitch': {
+        templateUrl: 'templates/tabs/pitch/create.html',
+        controller: 'PitchCtrl'
+      }
+    }
+  })
+
   .state('tab.search-details', {
     url: '/search/:id',
     views: {
       'tab-search': {
         templateUrl: 'templates/tabs/pitch/details.html',
-        controller: 'PitchCtrl'
+        controller: 'DetailsCtrl'
       }
     }
   })
