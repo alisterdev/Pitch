@@ -52,7 +52,14 @@ angular.module('app')
     $state.go('tab.featured-details', { id: id });
   };
 
-  // Get initial categories
+  // Get pitches when view is active
+  $scope.$on('$ionicView.enter', function () {
+    if (typeof $scope.categories !== 'undefined') {
+      getPitches();
+    }
+  });
+
+  // Get initial categories once
   getCategories();
 
 });
