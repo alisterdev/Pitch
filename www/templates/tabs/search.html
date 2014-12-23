@@ -1,9 +1,10 @@
-<ion-view>
+<ion-view ng-controller="SearchCtrl">
   <ion-nav-title class="item-input-inset">
     <label class="item-input-wrapper">
       <i class="icon ion-ios-search placeholder-icon"></i>
-      <input type="search" placeholder="Search" ng-model="query" on-enter="search(query)">
+      <input type="search" placeholder="Search" ng-model="$parent.query" on-enter="search(query)">
     </label>
+    <button class="button button-clear" ng-show="query" on-tap="cancelSearch()">Cancel</button>
   </ion-nav-title>
   <ion-content scroll="false">
 
@@ -27,8 +28,14 @@
       </ion-scroll>
     </div>
 
+    <div class="vertical-center-container" ng-show="hasResults && !results.length">
+      <div class="vertical-center text-center">
+        <p>No results.</p>
+      </div>
+    </div>
+
     <!-- Trending searches -->
-    <div class="vertical-center-container" ng-show="!results.length">
+    <div class="vertical-center-container" ng-show="!query">
       <div class="vertical-center">
         <h4 class="text-center">Trending Searches</h4>
         <button class="button button-clear button-positive button-search" ng-repeat="t in trending" on-release="search(t)">{{ t }}</button>

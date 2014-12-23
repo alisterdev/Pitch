@@ -10,11 +10,20 @@ angular.module('app')
   ];
 
   $scope.search = function (query) {
+    $scope.query = query;
+
     var res = PitchesResource.search({ title: query });
 
     res.$httpPromise.then(function () {
       $scope.results = res;
+      $scope.hasResults = true;
     });
+  };
+
+  $scope.cancelSearch = function () {
+    $scope.results = [];
+    $scope.hasResults = false;
+    $scope.query = null;
   };
 
   $scope.viewPitch = function (id) {
