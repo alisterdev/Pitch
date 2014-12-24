@@ -3,9 +3,13 @@
     <button class="button button-clear button-positive">Edit</button>
   </ion-nav-buttons>
   <ion-nav-buttons side="right">
-    <button class="button button-clear button-positive button-bold">Logout</button>
+    <button class="button button-clear button-positive button-bold" on-tap="logout()">Logout</button>
   </ion-nav-buttons>
   <ion-content>
+
+    <div class="padding">
+      <button class="button button-block button-assertive" on-tap="clearCache()">Clear Cache</button>
+    </div>
 
   </ion-content>
 </ion-view>

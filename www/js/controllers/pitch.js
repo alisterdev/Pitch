@@ -11,7 +11,7 @@ angular.module('app')
   }
 
   $scope.createPitch = function (pitch) {
-    var user = UserService.get();
+    var user = UserService.user();
 
     // Add community to pitch
     pitch['community'] = user.community;

@@ -1,7 +1,7 @@
 angular.module('app')
 
 .controller('FeaturedCtrl', function ($scope, $state, $ionicModal, $ionicSlideBoxDelegate, PitchesResource, CategoriesResource, UserService) {
-  var user = UserService.get();
+  var user = UserService.user();
 
   function getCategories () {
     var res = CategoriesResource.query();
@@ -9,7 +9,7 @@ angular.module('app')
     res.$promise.then(function () {
       // Default category
       $scope.categories = [{ _id: 0, title: "All Categories" }];
-      
+
       $scope.categories = $scope.categories.concat(res);
       $scope.selectedCategory = $scope.categories[1];
 

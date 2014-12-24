@@ -9,7 +9,10 @@ angular.module('app', ['ionic', 'ionic.contrib.icon', 'ngResource', 'LocalStorag
   });
 })
 
-.config(function ($stateProvider, $urlRouterProvider, uiGmapGoogleMapApiProvider) {
+.config(function ($stateProvider, $urlRouterProvider, localStorageServiceProvider, uiGmapGoogleMapApiProvider) {
+
+  // Configure local storage
+  localStorageServiceProvider.setPrefix('pitch');
 
   // Configure Google Maps
   uiGmapGoogleMapApiProvider.configure({

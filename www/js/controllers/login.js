@@ -4,7 +4,7 @@ angular.module('app')
 
   $scope.login = function () {
     // Indicate that user is logged in
-    UserService.isLoggedIn(true);
+    
 
     $state.go('tab.featured');
   };
