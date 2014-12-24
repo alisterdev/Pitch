@@ -1,16 +1,17 @@
 angular.module('app')
 
-.factory('UserService', function (localStorageService) {
-  var user = {
-    _id: 1337,
-    firstName: 'John',
-    lastName: 'Appleseed',
-    community: '54950b8e079766ced2b1d0c8'
-  };
+.factory('UsersResource', function ($cachedResource, API) {
+  return $cachedResource('resource.users', API.url + '/users/:id', { _id: '@_id' });
+})
 
+.factory('UserService', function (localStorageService) {
   return {
-    get: function () {
-      return user;
+    user: function (user) {
+      if (typeof user === 'object') {
+        localStorageService.set('user', user);
+      }
+
+      return localStorageService.get('user') || {};
     },
 
     favorites: function (favorites) {
