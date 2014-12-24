@@ -1,9 +1,9 @@
-.tab-add {
+.tab-pitch {
   opacity: 1;
 
   i {
     height: 100% !important;
-    font-size: 48px !important;
+    font-size: $tabs-height !important;
     color: $light;
     background-color: $positive;
   }

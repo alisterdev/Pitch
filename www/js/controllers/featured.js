@@ -7,8 +7,11 @@ angular.module('app')
     var res = CategoriesResource.query();
 
     res.$promise.then(function () {
-      $scope.categories = res;
-      $scope.selectedCategory = $scope.categories[0];
+      // Default category
+      $scope.categories = [{ _id: 0, title: "All Categories" }];
+      
+      $scope.categories = $scope.categories.concat(res);
+      $scope.selectedCategory = $scope.categories[1];
 
       // Get initial featured pitches
       getPitches();

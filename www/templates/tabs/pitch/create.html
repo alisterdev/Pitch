@@ -1,0 +1,43 @@
+<ion-view title="Create Pitch">
+  <ion-content>
+
+    <form ng-submit="createPitch(pitch)" no-validate>
+      <div class="list no-margin">
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Title</span>
+          <input ng-model="pitch.title" type="text" placeholder="Fast Food Friday">
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Required Pitchers</span>
+          <input ng-model="pitch.pitchers.required" type="number" placeholder="5">
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Price per Pitcher</span>
+          <input ng-model="pitch.price" type="number" placeholder="$10.00">
+        </label>
+        <label class="item item-input item-select">
+          <span class="input-label">Category</span>
+          <select ng-model="pitch.category" ng-options="c._id as c.title for c in categories">
+            <option value="">Choose</option>
+          </select>
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Location</span>
+          <input ng-model="pitch.location.title" type="text" placeholder="Engineering 42">
+          <!-- insert map here -->
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Date</span>
+          <input ng-model="pitch.date" type="date">
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Time</span>
+          <input ng-model="pitch.time" type="time">
+        </label>
+      </div>
+
+      <button type="submit" class="button button-block button-clear button-positive">Create</button>
+    </form>
+
+  </ion-content>
+</ion-view>
