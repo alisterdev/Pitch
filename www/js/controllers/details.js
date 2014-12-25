@@ -1,6 +1,6 @@
 angular.module('app')
 
-.controller('DetailsCtrl', function ($scope, $stateParams, $ionicModal, $ionicLoading, $ionicSlideBoxDelegate, $ionicPlatform, $cordovaCalendar, uiGmapGoogleMapApi, PitchesResource, UserService) {
+.controller('DetailsCtrl', function ($scope, $stateParams, $ionicModal, $ionicLoading, $ionicSlideBoxDelegate, $ionicHistory, $ionicPlatform, $cordovaCalendar, uiGmapGoogleMapApi, PitchesResource, UserService) {
   // Get pitch id
   var id = $stateParams.id;
 
@@ -52,6 +52,13 @@ angular.module('app')
 
       // Determine if favorite
       updateFavorite($scope.pitch._id);
+    }, function (err) {
+      // If error, remove from favorites and go back a view
+      var favorites = UserService.favorites();
+      delete favorites[id];
+      UserService.favorites(favorites);
+
+      $ionicHistory.goBack();
     });
   };
 
