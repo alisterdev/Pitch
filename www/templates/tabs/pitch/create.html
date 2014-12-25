@@ -7,9 +7,9 @@
           <span class="input-label">Title</span>
           <input ng-model="pitch.title" type="text" placeholder="Fast Food Friday">
         </label>
-        <ion-item class="item-stacked-label-content" href="#">
+        <ion-item class="item-stacked-label-content" href="" on-tap="showModalDescription()">
           <span class="input-label">Description</span>
-          <input ng-model="pitch.description" class="disabled" type="text" placeholder="Each pitcher gets two slices of pizza.">
+          <p>{{ pitch.description || "Each pitcher gets two slices of pizza." }}</p>
         </ion-item>
         <label class="item item-input item-stacked-label">
           <span class="input-label">Required Pitchers</span>
@@ -45,3 +45,22 @@
 
   </ion-content>
 </ion-view>
+
+<!-- Description modal -->
+<script id="description.html" type="text/ng-template">
+  <ion-modal-view>
+    <ion-header-bar>
+      <div class="buttons">
+        <button class="button button-clear button-positive icon-left ion-ios-arrow-back" on-tap="hideModalDescription()"> Back</button>
+      </div>
+      <h1 class="title">Description</h1>
+    </ion-header-bar>
+    <ion-content>
+
+      <label class="item item-input item-stacked-label scroll">
+        <textarea ng-model="$parent.pitch.description" class="scroll" placeholder="Each pitcher gets two slices of pizza."></textarea>
+      </label>
+
+    </ion-content>
+  </ion-modal-view>
+</script>
