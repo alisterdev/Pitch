@@ -21,4 +21,9 @@ angular.module('app')
     $state.go('login');
   };
 
+  // Go to first slide when enter view
+  $scope.$on('$ionicView.enter', function () {
+    slideBox.slide(0, 0);
+  });
+
 });
