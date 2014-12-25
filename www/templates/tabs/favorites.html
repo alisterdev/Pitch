@@ -2,7 +2,7 @@
   <ion-content>
 
     <ion-list>
-      <ion-item class="item-avatar" ng-repeat="(id, pitch) in favorites">
+      <ion-item class="item-avatar" ng-repeat="(id, pitch) in favorites" href="#/tab/favorites/{{ id }}">
         <p >#{{ $index + 1 }}</p>
         <h2>{{ pitch.title }}</h2>
         <p>{{ pitch.creator }}</p>

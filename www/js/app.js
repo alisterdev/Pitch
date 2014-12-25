@@ -73,6 +73,16 @@ angular.module('app', ['ionic', 'ionic.contrib.icon', 'ngResource', 'LocalStorag
     }
   })
 
+  .state('tab.favorites-details', {
+    url: '/favorites/:id',
+    views: {
+      'tab-favorites': {
+        templateUrl: 'templates/tabs/pitch/details.html',
+        controller: 'DetailsCtrl'
+      }
+    }
+  })
+
   .state('tab.search', {
     url: '/search',
     views: {
