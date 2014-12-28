@@ -17,7 +17,7 @@ angular.module('app')
     pitch['community'] = user.community;
 
     // Add creator to pitch
-    pitch['creator'] = user._id;
+    pitch['creator'] = user.id;
 
     console.log(pitch);
   };

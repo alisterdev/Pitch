@@ -8,7 +8,7 @@ angular.module('app')
 
     res.$promise.then(function () {
       // Default category
-      $scope.categories = [{ _id: 0, title: "All Categories" }];
+      $scope.categories = [{ id: 0, title: "All Categories" }];
 
       $scope.categories = $scope.categories.concat(res);
       $scope.selectedCategory = $scope.categories[1];
@@ -19,7 +19,7 @@ angular.module('app')
   }
 
   function getPitches () {
-    var res = PitchesResource.query({ community: user.community, category: $scope.selectedCategory['_id'] });
+    var res = PitchesResource.query({ community: user.community, category: $scope.selectedCategory['id'] });
 
     res.$promise.then(function () {
       $scope.featured = res;

@@ -11,7 +11,7 @@
     <!-- Search results -->
     <div class="scroll" ng-hide="!results.length" ng-repeat="r in results">
       <ion-scroll class="scroll">
-        <div class="card card-featured" on-tap="viewPitch(r._id)">
+        <div class="card card-featured" on-tap="viewPitch(r.id)">
           <div class="card-image" background-image="r.image"></div>
           <div class="card-item">
             <h3>{{ r.title }}</h3>

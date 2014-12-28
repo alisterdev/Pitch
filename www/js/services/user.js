@@ -1,7 +1,10 @@
 angular.module('app')
 
 .factory('UsersResource', function ($cachedResource, API) {
-  return $cachedResource('resource.users', API.url + '/users/:id', { _id: '@_id' });
+  return $cachedResource('resource.users', API.url + '/users/:id', { id: '@id' }, {
+    register: { method: 'POST', url: '/register' },
+    oauth: { method: 'POST', url: '/oauth/access_token' }
+  });
 })
 
 .service('UserService', function (localStorageService) {

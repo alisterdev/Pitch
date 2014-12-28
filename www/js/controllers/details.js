@@ -21,7 +21,7 @@ angular.module('app')
   $scope.rating = 0;
 
   function updateFavorite (id) {
-    if (typeof UserService.favorites()[$scope.pitch._id] !== 'undefined') {
+    if (typeof UserService.favorites()[$scope.pitch.id] !== 'undefined') {
       $scope.isFavorite = true;
     } else {
       $scope.isFavorite = false;
@@ -51,7 +51,7 @@ angular.module('app')
       $scope.photos = [$scope.pitch.image];
 
       // Determine if favorite
-      updateFavorite($scope.pitch._id);
+      updateFavorite($scope.pitch.id);
     }, function (err) {
       // If error, remove from favorites and go back a view
       var favorites = UserService.favorites();
@@ -74,10 +74,10 @@ angular.module('app')
       message = 'Unfavorited';
 
       // Remove stored favorite
-      delete favorites[$scope.pitch._id];
+      delete favorites[$scope.pitch.id];
     } else {
       // Store only necessary data in favorite
-      favorites[$scope.pitch._id] = {
+      favorites[$scope.pitch.id] = {
         title: $scope.pitch.title,
         creator: $scope.pitch.creator.name.first + ' ' + $scope.pitch.creator.name.last
       };
@@ -157,7 +157,7 @@ angular.module('app')
   // Update favorite status when view enter
   $scope.$on('$ionicView.enter', function () {
     if (typeof $scope.pitch !== 'undefined') {
-      updateFavorite($scope.pitch._id);
+      updateFavorite($scope.pitch.id);
     }
   });
 
