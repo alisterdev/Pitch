@@ -7,11 +7,12 @@ angular.module('app')
       localStorageService.set('user', user);
     }
 
-    if (angular.isDefined(localStorageService.get('user')) && (Object.keys(localStorageService.get('user'))).length == 0) {
+    var user = Object(localStorageService.get('user'));
+    if (angular.isDefined(user) && (Object.keys(user)).length == 0) {
       return { accessToken: '@accessToken' };
     }
 
-    return localStorageService.get('user');
+    return user;
   };
 
   this.facebookAccessToken = function (accessToken) {
@@ -50,9 +51,9 @@ angular.module('app')
 
 .factory('UsersResource', function ($cachedResource, UserService, SERVER, API) {
   return $cachedResource('resource.users', API.url + '/users/:id', { id: '@id', access_token: UserService.user().accessToken }, {
-    register: { method: 'POST', url: SERVER.url + '/register' },
-    oauth: { method: 'POST', url: SERVER.url + '/oauth/access_token' },
-    me: { method: 'GET', url: API.url + '/me', params: { access_token: UserService.user().accessToken } },
-    join: { method: 'POST', url:  API.url + '/me/join', params: { access_token: UserService.user().accessToken } }
+    register: { method: 'POST', url: SERVER.url + '/register', cache: false },
+    oauth: { method: 'POST', url: SERVER.url + '/oauth/access_token', cache: false },
+    me: { method: 'GET', url: API.url + '/me', params: { access_token: UserService.user().accessToken }, cache: false },
+    join: { method: 'POST', url:  API.url + '/me/join', params: { access_token: UserService.user().accessToken }, cache: false }
   });
 });

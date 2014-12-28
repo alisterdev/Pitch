@@ -3,6 +3,14 @@
   height: 100%;
 }
 
+.row-simple {
+  padding: 0;
+
+  .col {
+    padding: 0
+  }
+}
+
 // Margin
 .margin-top {
   margin-top: $content-padding;

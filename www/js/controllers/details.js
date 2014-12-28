@@ -34,8 +34,8 @@ angular.module('app')
     res.$promise.then(function () {
       $scope.pitch = res;
 
-      // Determine rating
-      $scope.rating = $scope.pitch.creator.rating.likes / $scope.pitch.creator.rating.dislikes;
+      // Update rating
+      $scope.rating = $scope.pitch.creator.rating.value;
 
       // Set center for map
       $scope.map.center = $scope.pitch.location;

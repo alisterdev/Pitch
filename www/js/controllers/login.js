@@ -10,7 +10,7 @@ angular.module('app')
     $state.go('intro');
   } else if (typeof UserService.user().community === 'object') {
     $state.go('tab.featured');
-  } else {
+  } else if (typeof UserService.user().accessToken !== 'undefined' && UserService.user().accessToken !== '@accessToken') {
     $state.go('join');
   }
 
