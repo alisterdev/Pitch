@@ -45,3 +45,21 @@
     direction: ltr;
   }
 }
+
+.item-error {
+  border-left: 4px solid $assertive;
+  padding-left: 13px;
+}
+
+.item-error-content .item-content {
+  @extend .item-error;
+}
+
+.item-valid {
+  border-left: 4px solid $balanced;
+  padding-left: 13px;
+}
+
+.item-valid-content .item-content {
+  @extend .item-valid;
+}

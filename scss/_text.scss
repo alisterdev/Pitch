@@ -23,3 +23,7 @@
   @extend .text-uppercase;
   letter-spacing: 3px;
 }
+
+p.disabled {
+  color: $input-color-placeholder;
+}
