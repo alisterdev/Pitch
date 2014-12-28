@@ -1,9 +1,9 @@
 angular.module('app')
 
-.factory('UsersResource', function ($cachedResource, API) {
+.factory('UsersResource', function ($cachedResource, SERVER, API) {
   return $cachedResource('resource.users', API.url + '/users/:id', { id: '@id' }, {
-    register: { method: 'POST', url: '/register' },
-    oauth: { method: 'POST', url: '/oauth/access_token' }
+    register: { method: 'POST', url: SERVER.url + '/register' },
+    oauth: { method: 'POST', url: SERVER.url + '/oauth/access_token' }
   });
 })
 
@@ -15,6 +15,14 @@ angular.module('app')
     }
 
     return localStorageService.get('user') || {};
+  };
+
+  this.facebookAccessToken = function (accessToken) {
+    if (typeof accessToken === 'string') {
+      localStorageService.set('facebookAccessToken', accessToken);
+    }
+
+    return localStorageService.get('facebookAccessToken') || null;
   };
 
   this.favorites = function (favorites) {
