@@ -52,7 +52,7 @@ angular.module('app')
   return $cachedResource('resource.users', API.url + '/users/:id', { id: '@id', access_token: UserService.user().accessToken }, {
     register: { method: 'POST', url: SERVER.url + '/register' },
     oauth: { method: 'POST', url: SERVER.url + '/oauth/access_token' },
-    me: { method: 'GET', url: API.url + '/me' },
-    join: { method: 'POST', url:  API.url + '/me/join' }
+    me: { method: 'GET', url: API.url + '/me', params: { access_token: UserService.user().accessToken } },
+    join: { method: 'POST', url:  API.url + '/me/join', params: { access_token: UserService.user().accessToken } }
   });
 });

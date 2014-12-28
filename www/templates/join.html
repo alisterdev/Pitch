@@ -3,7 +3,7 @@
     
     <div class="vertical-center-container">
       <div class="vertical-center">
-        <form ng-submit="join()" no-validate>
+        <form ng-submit="join(user)" no-validate>
           <h3 class="text-center text-featurette padding-bottom">Your Community</h3>
 
           <label class="item item-input item-select item-select-large">
@@ -15,7 +15,7 @@
             <span class="input-label">Email</span>
             <input type="email" ng-model="user.email">
           </label>
-          <button class="button button-block button-clear button-positive">Join</button>
+          <button type="submit" class="button button-block button-clear button-positive">Join</button>
         </form>
       </div>
     </div>

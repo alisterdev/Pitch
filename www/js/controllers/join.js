@@ -1,13 +1,17 @@
 angular.module('app')
 
-.controller('JoinCtrl', function ($scope, CommunitiesResource, UserService) {
+.controller('JoinCtrl', function ($scope, $state, CommunitiesResource, UsersResource, UserService) {
 
   $scope.join = function (data) {
-    var res = new UserService(data);
+    var res = new UsersResource(data);
     res.$join();
 
     res.$promise.then(function () {
-      
+      // Store new user data
+      UserService.user(res);
+
+      // Access app
+      $state.go('tab.featured');
     }, function (err) {
 
     });
