@@ -35,3 +35,13 @@
     }
   }
 }
+
+.item-select-large {
+  height: 50px;
+
+  select {
+    width: 100%;
+    max-width: 100%;
+    direction: ltr;
+  }
+}

@@ -51,6 +51,8 @@ angular.module('app')
 .factory('UsersResource', function ($cachedResource, UserService, SERVER, API) {
   return $cachedResource('resource.users', API.url + '/users/:id', { id: '@id', access_token: UserService.user().accessToken }, {
     register: { method: 'POST', url: SERVER.url + '/register' },
-    oauth: { method: 'POST', url: SERVER.url + '/oauth/access_token' }
+    oauth: { method: 'POST', url: SERVER.url + '/oauth/access_token' },
+    me: { method: 'GET', url: API.url + '/me' },
+    join: { method: 'POST', url:  API.url + '/me/join' }
   });
 });

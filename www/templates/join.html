@@ -1,5 +1,24 @@
-<ion-view title="Join Your Community" hide-back-button="true">
-  <ion-content>
-    <h1>Holla</h1>
+<ion-view hide-nav-bar="true" cache-view="false">
+  <ion-content scroll="false">
+    
+    <div class="vertical-center-container">
+      <div class="vertical-center">
+        <form ng-submit="join()" no-validate>
+          <h3 class="text-center text-featurette padding-bottom">Your Community</h3>
+
+          <label class="item item-input item-select item-select-large">
+            <select ng-model="user.community" ng-options="c.id as c.title for c in communities">
+              <option value="">Choose</option>
+            </select>
+          </label>
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">Email</span>
+            <input type="email" ng-model="user.email">
+          </label>
+          <button class="button button-block button-clear button-positive">Join</button>
+        </form>
+      </div>
+    </div>
+
   </ion-content>
 </ion-view>
