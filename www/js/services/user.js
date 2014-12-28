@@ -1,12 +1,5 @@
 angular.module('app')
 
-.factory('UsersResource', function ($cachedResource, SERVER, API) {
-  return $cachedResource('resource.users', API.url + '/users/:id', { id: '@id' }, {
-    register: { method: 'POST', url: SERVER.url + '/register' },
-    oauth: { method: 'POST', url: SERVER.url + '/oauth/access_token' }
-  });
-})
-
 .service('UserService', function (localStorageService) {
   
   this.user = function (user) {
@@ -14,7 +7,11 @@ angular.module('app')
       localStorageService.set('user', user);
     }
 
-    return localStorageService.get('user') || {};
+    if (angular.isDefined(localStorageService.get('user')) && (Object.keys(localStorageService.get('user'))).length == 0) {
+      return { accessToken: '@accessToken' };
+    }
+
+    return localStorageService.get('user');
   };
 
   this.facebookAccessToken = function (accessToken) {
@@ -49,4 +46,11 @@ angular.module('app')
     return Boolean(localStorageService.get('skipIntro'));
   };
 
+})
+
+.factory('UsersResource', function ($cachedResource, UserService, SERVER, API) {
+  return $cachedResource('resource.users', API.url + '/users/:id', { id: '@id', access_token: UserService.user().accessToken }, {
+    register: { method: 'POST', url: SERVER.url + '/register' },
+    oauth: { method: 'POST', url: SERVER.url + '/oauth/access_token' }
+  });
 });

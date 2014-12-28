@@ -9,10 +9,15 @@ angular.module('app', ['ionic', 'ionic.contrib.icon', 'ngResource', 'LocalStorag
   });
 })
 
-.config(function ($stateProvider, $urlRouterProvider, localStorageServiceProvider, uiGmapGoogleMapApiProvider) {
+.config(function ($stateProvider, $urlRouterProvider, $cordovaFacebookProvider, localStorageServiceProvider, uiGmapGoogleMapApiProvider) {
 
   // Configure local storage
   localStorageServiceProvider.setPrefix('pitch');
+
+  // Configure Facebook API for development
+  if (!window.cordova) {
+    $cordovaFacebookProvider.browserInit(839167686141518);
+  }
 
   // Configure Google Maps
   uiGmapGoogleMapApiProvider.configure({

@@ -17,6 +17,22 @@
     <script src="lib/angular-cached-resource/angular-cached-resource.js"></script>
     <script src="lib/lodash/dist/lodash.js"></script>
     <script src="lib/angular-google-maps/dist/angular-google-maps.js"></script>
+
+    <!-- facebook -->
+    <script>
+      (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {
+          return;
+        }
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <script src="js/facebookConnectPlugin.js"></script>
+
     <script src="lib/ngCordova/dist/ng-cordova.js"></script>
 
     <!-- cordova script (this will be a 404 during development) -->
