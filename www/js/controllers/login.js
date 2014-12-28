@@ -2,6 +2,18 @@ angular.module('app')
 
 .controller('LoginCtrl', function ($scope, $state, $cordovaFacebook, UsersResource, UserService, DEC) {
 
+  // Check once if need to show intro
+  if (!UserService.hasViewedIntro()) {
+    // Indicate that viewed intro
+    UserService.hasViewedIntro(true);
+
+    $state.go('intro');
+  } else if (typeof UserService.user().community === 'object') {
+    $state.go('tab.featured');
+  } else {
+    $state.go('join');
+  }
+
   $scope.goToIntro = function () {
     $state.go('intro');
   };

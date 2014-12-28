@@ -14,7 +14,7 @@ angular.module('app')
     var user = UserService.user();
 
     // Add community to pitch
-    pitch['community'] = user.community;
+    pitch['community'] = user.community.id;
 
     // Add creator to pitch
     pitch['creator'] = user.id;

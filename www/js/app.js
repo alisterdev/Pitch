@@ -39,7 +39,13 @@ angular.module('app', ['ionic', 'ionic.contrib.icon', 'ngResource', 'LocalStorag
     url: '/login',
     templateUrl: 'templates/login.html',
     controller: 'LoginCtrl'
-  })  
+  })
+
+  .state('join', {
+    url: '/join',
+    templateUrl: 'templates/join.html',
+    controller: 'JoinCtrl'
+  })
 
   .state('tab', {
     url: "/tab",
@@ -129,6 +135,6 @@ angular.module('app', ['ionic', 'ionic.contrib.icon', 'ngResource', 'LocalStorag
   });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/featured');
+  $urlRouterProvider.otherwise('/login');
 
 });
