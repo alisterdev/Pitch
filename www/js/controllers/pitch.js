@@ -2,6 +2,20 @@ angular.module('app')
 
 .controller('PitchCtrl', function ($scope, $ionicModal, CategoriesResource, UserService) {
 
+  // Default data
+  $scope.map = {
+    markers: [],
+    control: {},
+    center: {
+      latitude: 0,
+      longitude: 0
+    },
+    zoom: 15,
+    options: {
+      disableDefaultUI: true
+    }
+  };
+
   function getCategories () {
     var res = CategoriesResource.query();
 

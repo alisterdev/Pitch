@@ -48,11 +48,11 @@
   <ion-modal-view>
     <ion-header-bar>
       <div class="buttons">
-        <button class="button button-clear button-positive icon-left ion-ios-arrow-back" on-tap="hideModalDescription()"> Back</button>
+        <button class="button button-clear button-positive" on-tap="hideModalDescription()"><i class="icon ion-ios-arrow-back"></i> Back</button>
       </div>
       <h1 class="title">Description</h1>
     </ion-header-bar>
-    <ion-content>
+    <ion-content scroll="false">
 
       <label class="item item-input item-stacked-label scroll">
         <textarea ng-model="$parent.pitch.description" ng-change="$parent.formCreatePitch.description.$dirty = true" class="scroll" placeholder="Each pitcher gets two slices of pizza."></textarea>
@@ -67,18 +67,25 @@
   <ion-modal-view>
     <ion-header-bar>
       <div class="buttons">
-        <button class="button button-clear button-positive icon-left ion-ios-arrow-back" on-tap="hideModalLocation()"> Back</button>
+        <button class="button button-clear button-positive" on-tap="hideModalLocation()"><i class="icon ion-ios-arrow-back"></i> Back</button>
       </div>
       <h1 class="title">Location</h1>
     </ion-header-bar>
-    <ion-content>
+    <ion-content scroll="false">
 
       <label class="item item-input item-stacked-label">
         <span class="input-label">Name</span>
         <input ng-model="$parent.pitch.location.title" ng-change="$parent.formCreatePitch.location.$dirty = true" type="text" placeholder="Engineering 42" ng-minlength="1" required>
       </label>
 
+      <label class="item item-input item-stacked-label padding-bottom no-border">
+        <span class="input-label">Location Pin</span>
+      </label>
+
       <!-- Insert map here -->
+      <ui-gmap-google-map center="map.center" pan="true" zoom="map.zoom" control="map.control" options="map.options">
+        <ui-gmap-markers models="map.markers" coords="'self'" icon="'icon'"></ui-gmap-markers>
+      </ui-gmap-google-map>
 
     </ion-content>
   </ion-modal-view>
