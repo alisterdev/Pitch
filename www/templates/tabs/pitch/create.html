@@ -26,11 +26,11 @@
             <option value="">Choose</option>
           </select>
         </label>
-        <label class="item item-input item-stacked-label" ng-class="{ 'item-error': formCreatePitch.location.$dirty && formCreatePitch.location.$invalid, 'item-valid': formCreatePitch.location.$valid }">
+        <ion-item class="item-stacked-label-content" href="" on-tap="showModalLocation()" ng-class="{ 'item-error-content': formCreatePitch.location.$dirty && formCreatePitch.location.$invalid, 'item-valid-content': formCreatePitch.location.$valid }">
           <span class="input-label">Location</span>
-          <input name="location" ng-model="pitch.location.title" type="text" placeholder="Engineering 42" ng-minlength="1" required>
-          <!-- insert map here -->
-        </label>
+          <input class="hide" name="location" ng-model="pitch.location.title" ng-minlength="1" required>
+          <p ng-class="{ disabled: !pitch.location.title }">{{ pitch.location.title || "Engineering 42" }}</p>
+        </ion-item>
         <label class="item item-input item-stacked-label" ng-class="{ 'item-error': formCreatePitch.pitchDate.$dirty && formCreatePitch.pitchDate.$invalid, 'item-valid': formCreatePitch.pitchDate.$valid }">
           <span class="input-label">Date</span>
           <input name="pitchDate" ng-model="pitch.date" type="date" required>
@@ -55,8 +55,30 @@
     <ion-content>
 
       <label class="item item-input item-stacked-label scroll">
-        <textarea ng-model="$parent.pitch.description" class="scroll" placeholder="Each pitcher gets two slices of pizza."></textarea>
+        <textarea ng-model="$parent.pitch.description" ng-change="$parent.formCreatePitch.description.$dirty = true" class="scroll" placeholder="Each pitcher gets two slices of pizza."></textarea>
       </label>
+
+    </ion-content>
+  </ion-modal-view>
+</script>
+
+<!-- Location modal -->
+<script id="location.html" type="text/ng-template">
+  <ion-modal-view>
+    <ion-header-bar>
+      <div class="buttons">
+        <button class="button button-clear button-positive icon-left ion-ios-arrow-back" on-tap="hideModalLocation()"> Back</button>
+      </div>
+      <h1 class="title">Location</h1>
+    </ion-header-bar>
+    <ion-content>
+
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Name</span>
+        <input ng-model="$parent.pitch.location.title" ng-change="$parent.formCreatePitch.location.$dirty = true" type="text" placeholder="Engineering 42" ng-minlength="1" required>
+      </label>
+
+      <!-- Insert map here -->
 
     </ion-content>
   </ion-modal-view>

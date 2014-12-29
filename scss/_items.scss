@@ -52,7 +52,8 @@
 }
 
 .item-error-content .item-content {
-  @extend .item-error;
+  border-left: 3px solid $assertive;
+  padding-left: 14px;
 }
 
 .item-valid {
@@ -61,5 +62,6 @@
 }
 
 .item-valid-content .item-content {
-  @extend .item-valid;
+  border-left: 3px solid $balanced;
+  padding-left: 14px;
 }
