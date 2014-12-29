@@ -13,10 +13,8 @@ angular.module('app')
   $scope.createPitch = function (pitch) {
     var user = UserService.user();
 
-    // Add community to pitch
+    // Add community and creator to pitch
     pitch['community'] = user.community.id;
-
-    // Add creator to pitch
     pitch['creator'] = user.id;
 
     console.log(pitch);
@@ -39,6 +37,25 @@ angular.module('app')
 
   $scope.hideModalDescription = function () {
     $scope.modalDescription.hide();
+  };
+
+  // Location modal
+  $scope.showModalLocation = function () {
+    if (typeof $scope.modalLocation === 'undefined') {
+      $ionicModal.fromTemplateUrl('location.html', {
+        scope: $scope,
+        animation: 'slide-right-left'
+      }).then(function (modal) {
+        $scope.modalLocation = modal;
+        $scope.modalLocation.show();
+      });
+    } else {
+      $scope.modalLocation.show();
+    }
+  };
+
+  $scope.hideModalLocation = function () {
+    $scope.modalLocation.hide();
   };
 
   getCategories();
