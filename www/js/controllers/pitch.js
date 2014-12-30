@@ -10,13 +10,7 @@ angular.module('app')
       lng: -79.3793910741806,
       zoom: 17
     },
-    markers: {
-      origin: {
-        lat: 43.64515935672089,
-        lng: -79.3793910741806,
-        message: 'Meeting Location'
-      }
-    },
+    markers: {},
     events: {
       map: {
         enable: ['click'],
@@ -36,9 +30,14 @@ angular.module('app')
   $scope.createPitch = function (pitch) {
     var user = UserService.user();
 
-    // Add community and creator to pitch
+    // Combine date and time
+
+
+    // Add additional pitch data
     pitch['community'] = user.community.id;
     pitch['creator'] = user.id;
+    pitch['location']['latitude'] = $scope.map.markers.origin.lat;
+    pitch['location']['longitude'] = $scope.map.markers.origin.lng;
 
     console.log(pitch);
   };
@@ -78,8 +77,13 @@ angular.module('app')
   };
 
   // Set location on map
-  $scope.$on('leafletDirectiveMap.click', function (e) {
-    console.log(e);
+  $scope.$on('leafletDirectiveMap.click', function (event, args) {
+    var coords = args.leafletEvent.latlng;
+    $scope.map.markers['origin'] = {
+      lat: coords.lat,
+      lng: coords.lng,
+      message: 'Meet Here'
+    };
   });
 
   $scope.hideModalLocation = function () {

@@ -29,6 +29,7 @@
         <ion-item class="item-stacked-label-content" href="" on-tap="showModalLocation()" ng-class="{ 'item-error-content': formCreatePitch.location.$dirty && formCreatePitch.location.$invalid, 'item-valid-content': formCreatePitch.location.$valid }">
           <span class="input-label">Location</span>
           <input class="hide" name="location" ng-model="pitch.location.title" ng-minlength="1" required>
+          <input class="hide" name="location" ng-model="map.markers.origin" required>
           <p ng-class="{ disabled: !pitch.location.title }">{{ pitch.location.title || "Engineering 42" }}</p>
         </ion-item>
         <label class="item item-input item-stacked-label" ng-class="{ 'item-error': formCreatePitch.pitchDate.$dirty && formCreatePitch.pitchDate.$invalid, 'item-valid': formCreatePitch.pitchDate.$valid }">
@@ -83,7 +84,7 @@
       </label>
 
       <!-- Insert map here -->
-      <leaflet id="mapCreatePitchLocation" defaults="map.defaults" center="map.center" markers="map.markers" event-broadcast="map.events" width="100%" height="100px" autofill></leaflet>
+      <leaflet data-tap-disabled="true" id="mapCreatePitchLocation" defaults="map.defaults" center="map.center" markers="map.markers" event-broadcast="map.events" width="100%" height="100px" autofill></leaflet>
 
     </ion-content>
   </ion-modal-view>
