@@ -1,4 +1,4 @@
-angular.module('app', ['ionic', 'ionic.contrib.icon', 'ngResource', 'LocalStorageModule', 'ngCachedResource', 'uiGmapgoogle-maps', 'ngCordova'])
+angular.module('app', ['ionic', 'ionic.contrib.icon', 'ngResource', 'LocalStorageModule', 'ngCachedResource', 'ngCordova', 'leaflet-directive'])
 
 .run(function ($ionicPlatform) {
   $ionicPlatform.ready( function() {
@@ -9,7 +9,7 @@ angular.module('app', ['ionic', 'ionic.contrib.icon', 'ngResource', 'LocalStorag
   });
 })
 
-.config(function ($stateProvider, $urlRouterProvider, $cordovaFacebookProvider, localStorageServiceProvider, uiGmapGoogleMapApiProvider) {
+.config(function ($stateProvider, $urlRouterProvider, $cordovaFacebookProvider, localStorageServiceProvider) {
 
   // Configure local storage
   localStorageServiceProvider.setPrefix('pitch');
@@ -18,13 +18,6 @@ angular.module('app', ['ionic', 'ionic.contrib.icon', 'ngResource', 'LocalStorag
   if (!window.cordova) {
     $cordovaFacebookProvider.browserInit(839167686141518);
   }
-
-  // Configure Google Maps
-  uiGmapGoogleMapApiProvider.configure({
-    key: '',
-    v: '3.17',
-    libraries: 'geometry,visualization'
-  });
 
   // Configure states
   $stateProvider

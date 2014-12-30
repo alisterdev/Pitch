@@ -7,6 +7,7 @@
 
 
     <!-- compiled css output -->
+    <link href="lib/leaflet/dist/leaflet.css" rel="stylesheet">
     <link href="css/ionic.app.css" rel="stylesheet">
 
     <!-- ionic/angularjs js -->
@@ -15,8 +16,8 @@
     <script src="lib/angular-resource/angular-resource.js"></script>
     <script src="lib/angular-local-storage/dist/angular-local-storage.js"></script>
     <script src="lib/angular-cached-resource/angular-cached-resource.js"></script>
-    <script src="lib/lodash/dist/lodash.js"></script>
-    <script src="lib/angular-google-maps/dist/angular-google-maps.js"></script>
+    <script src="lib/leaflet/dist/leaflet.js"></script>
+    <script src="lib/angular-leaflet-directive/dist/angular-leaflet-directive.js"></script>
 
     <!-- facebook -->
     <script>
@@ -53,11 +54,13 @@
     <script src="js/controllers/tabs.js"></script>
     <script src="js/services/categories.js"></script>
     <script src="js/services/communities.js"></script>
+    <script src="js/services/map.js"></script>
     <script src="js/services/pitches.js"></script>
     <script src="js/services/user.js"></script>
+    <script src="js/directives/autofill.js"></script>
     <script src="js/directives/card.js"></script>
-    <script src="js/directives/backgroundImage.js"></script>
-    <script src="js/directives/onEnter.js"></script>
+    <script src="js/directives/background-image.js"></script>
+    <script src="js/directives/on-enter.js"></script>
     <script src="js/directives/stars.js"></script>
   </head>
   <body ng-app="app">

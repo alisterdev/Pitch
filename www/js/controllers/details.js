@@ -1,21 +1,18 @@
 angular.module('app')
 
-.controller('DetailsCtrl', function ($scope, $stateParams, $ionicModal, $ionicLoading, $ionicSlideBoxDelegate, $ionicHistory, $ionicPlatform, $cordovaCalendar, uiGmapGoogleMapApi, PitchesResource, UserService) {
+.controller('DetailsCtrl', function ($scope, $stateParams, $ionicModal, $ionicLoading, $ionicSlideBoxDelegate, $ionicHistory, $ionicPlatform, $cordovaCalendar, PitchesResource, UserService) {
   // Get pitch id
   var id = $stateParams.id;
 
   // Default data
   $scope.map = {
-    markers: [],
-    control: {},
-    center: {
-      latitude: 0,
-      longitude: 0
+    defaults: {
+      dragging: false
     },
-    zoom: 15,
-    options: {
-      draggable: false,
-      disableDefaultUI: true
+    center: {
+      lat: 0,
+      lng: 0,
+      zoom: 10
     }
   };
   $scope.rating = 0;

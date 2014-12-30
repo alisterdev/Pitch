@@ -1,18 +1,27 @@
 angular.module('app')
 
-.controller('PitchCtrl', function ($scope, $ionicModal, CategoriesResource, UserService) {
+.controller('PitchCtrl', function ($scope, $ionicModal, MapService, CategoriesResource, UserService) {
 
   // Default data
   $scope.map = {
-    markers: [],
-    control: {},
+    defaults: MapService.defaults,
     center: {
-      latitude: 0,
-      longitude: 0
+      lat: 43.64515935672089,
+      lng: -79.3793910741806,
+      zoom: 17
     },
-    zoom: 15,
-    options: {
-      disableDefaultUI: true
+    markers: {
+      origin: {
+        lat: 43.64515935672089,
+        lng: -79.3793910741806,
+        message: 'Meeting Location'
+      }
+    },
+    events: {
+      map: {
+        enable: ['click'],
+        logic: 'emit'
+      }
     }
   };
 
@@ -67,6 +76,11 @@ angular.module('app')
       $scope.modalLocation.show();
     }
   };
+
+  // Set location on map
+  $scope.$on('leafletDirectiveMap.click', function (e) {
+    console.log(e);
+  });
 
   $scope.hideModalLocation = function () {
     $scope.modalLocation.hide();
