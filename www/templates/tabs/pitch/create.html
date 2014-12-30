@@ -36,6 +36,10 @@
           <span class="input-label">Date</span>
           <input name="pitchDate" ng-model="pitch.date" type="date" required>
         </label>
+        <label class="item item-input item-stacked-label" ng-class="{ 'item-error': formCreatePitch.pitchTime.$dirty && formCreatePitch.pitchTime.$invalid, 'item-valid': formCreatePitch.pitchTime.$valid }">
+          <span class="input-label">Time</span>
+          <input name="pitchTime" ng-model="pitch.time" type="time" required>
+        </label>
       </div>
 
       <button type="submit" class="button button-block button-clear button-positive" ng-disabled="formCreatePitch.$invalid">Create</button>

@@ -1,6 +1,6 @@
 angular.module('app')
 
-.controller('PitchCtrl', function ($scope, $ionicModal, MapService, CategoriesResource, UserService) {
+.controller('PitchCtrl', function ($scope, $ionicModal, MapService, CategoriesResource, PitchesResource, UserService) {
 
   // Default data
   $scope.map = {
@@ -31,7 +31,9 @@ angular.module('app')
     var user = UserService.user();
 
     // Combine date and time
-
+    var d = new Date(pitch['date']);
+    var t = new Date(pitch['time']);
+    pitch['date'] = new Date(d.getFullYear(), d.getMonth(), d.getDate(), t.getHours(), t.getMinutes(), t.getSeconds(), t.getMilliseconds());
 
     // Add additional pitch data
     pitch['community'] = user.community.id;
@@ -39,7 +41,14 @@ angular.module('app')
     pitch['location']['latitude'] = $scope.map.markers.origin.lat;
     pitch['location']['longitude'] = $scope.map.markers.origin.lng;
 
-    console.log(pitch);
+    // Post to API
+    var res = new PitchesResource(pitch);
+    res.$save();
+
+    res.$promise.then(function () {
+      // Update user
+      UserService.user(res);
+    });
   };
 
   // Description modal
