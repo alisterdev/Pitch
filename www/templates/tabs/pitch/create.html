@@ -82,12 +82,9 @@
         <span class="input-label">Name</span>
         <input ng-model="$parent.pitch.location.title" ng-change="$parent.formCreatePitch.location.$dirty = true" type="text" placeholder="Engineering 42" ng-minlength="1" required>
       </label>
-
       <label class="item item-input item-stacked-label padding-bottom no-border">
         <span class="input-label">Location Pin</span>
       </label>
-
-      <!-- Insert map here -->
       <leaflet data-tap-disabled="true" id="mapCreatePitchLocation" defaults="map.defaults" center="map.center" markers="map.markers" event-broadcast="map.events" width="100%" height="100px" autofill></leaflet>
 
     </ion-content>

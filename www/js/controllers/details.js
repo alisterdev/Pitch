@@ -1,18 +1,17 @@
 angular.module('app')
 
-.controller('DetailsCtrl', function ($scope, $stateParams, $ionicModal, $ionicLoading, $ionicSlideBoxDelegate, $ionicHistory, $ionicPlatform, $cordovaCalendar, PitchesResource, UserService) {
+.controller('DetailsCtrl', function ($scope, $stateParams, $ionicModal, $ionicLoading, $ionicSlideBoxDelegate, $ionicHistory, $ionicPlatform, $cordovaCalendar, MapService, PitchesResource, UserService) {
   // Get pitch id
   var id = $stateParams.id;
 
   // Default data
   $scope.map = {
-    defaults: {
-      dragging: false
-    },
+    defaults: angular.extend(MapService.defaults, { dragging: false }),
+    markers: {},
     center: {
       lat: 0,
       lng: 0,
-      zoom: 10
+      zoom: 17
     }
   };
   $scope.rating = 0;
@@ -35,14 +34,15 @@ angular.module('app')
       $scope.rating = $scope.pitch.creator.rating.value;
 
       // Set center for map
-      $scope.map.center = $scope.pitch.location;
+      $scope.map.center.lat = $scope.pitch.location.latitude;
+      $scope.map.center.lng = $scope.pitch.location.longitude;
 
       // Add marker to map
-      $scope.map.markers.push({
-        id: 'origin',
-        latitude: $scope.map.center.latitude,
-        longitude: $scope.map.center.longitude
-      });
+      $scope.map.markers['origin'] = {
+        lat: $scope.map.center.lat,
+        lng: $scope.map.center.lng,
+        message: 'Meet Here'
+      };
 
       // Set data for photo viewer
       $scope.photos = [$scope.pitch.image];
