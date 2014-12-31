@@ -12,16 +12,17 @@
     </div>
 
     <div class="padding">
-      <div class="button-bar" ng-hide="hasPitchedIn">
+      <div class="button-bar" ng-hide="canContribute">
         <button class="button button-balanced">{{ pitch.price | currency }}</button>
         <button class="button button-outline button-balanced" on-tap="showModalPitch()">Pitch In</button>
       </div>
 
-      <div ng-show="hasPitchedIn">
-        <button class="button button-block button-balanced icon-right ion-ios-checkmark no-margin" ng-show="hasPitchedIn === 1">Pitched In</button>
-        <div class="blocky blocky-balanced balanced-bg light" ng-show="hasPitchedIn === 2">
+      <div ng-show="canContribute">
+        <button class="button button-block button-balanced icon-right ion-ios-checkmark no-margin" ng-show="canContribute === 1">Pitched In</button>
+        <div class="blocky blocky-balanced balanced-bg light" ng-show="canContribute === 2">
           Since you've created this pitch, other people will be able to contribute at {{ pitch.price | currency }} per pitcher.
         </div>
+        <div class="button button-block button-assertive no-margin" ng-show="canContribute === 3">Pitch succesfully funded</div>
       </div>
 
       <div class="margin-top">

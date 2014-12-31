@@ -61,9 +61,11 @@ angular.module('app')
       }
 
       if (hasContributed) {
-        $scope.hasPitchedIn = 1;
+        $scope.canContribute = 1;
       } else if ($scope.pitch.creator.id === userID) {
-        $scope.hasPitchedIn = 2;
+        $scope.canContribute = 2;
+      } else if (contributors.length === $scope.pitch.pitchers.required) {
+        $scope.canContribute = 3;
       }
 
       // Determine if favorite
@@ -178,7 +180,7 @@ angular.module('app')
       $scope.pitch = res;
 
       // Set contributed state
-      $scope.hasPitchedIn = 1;
+      $scope.canContribute = 1;
 
       // Hide modal and loading
       $scope.hideModalPitch();
