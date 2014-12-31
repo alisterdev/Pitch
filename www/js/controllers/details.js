@@ -48,6 +48,24 @@ angular.module('app')
       // Set data for photo viewer
       $scope.photos = [$scope.pitch.image];
 
+      // Determine if can pitch in
+      var userID = UserService.user().id
+        , hasContributed = false
+        , contributors = $scope.pitch.pitchers.contributed;
+
+      for (var i = 0; i < contributors; i++) {
+        if (contributors[i] === userID) {
+          hasContributed = true;
+          break;
+        }
+      }
+
+      if (hasContributed) {
+        $scope.hasPitchedIn = 1;
+      } else if ($scope.pitch.creator.id === userID) {
+        $scope.hasPitchedIn = 2;
+      }
+
       // Determine if favorite
       updateFavorite($scope.pitch.id);
     }, function (err) {
