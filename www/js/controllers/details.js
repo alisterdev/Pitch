@@ -34,6 +34,26 @@ angular.module('app')
       $scope.rating = $scope.pitch.creator.rating.value;
 
       $timeout(function () {
+        // Determine if can pitch in
+        var userID = UserService.user().id
+          , hasContributed = false
+          , contributors = $scope.pitch.pitchers.contributed;
+
+        for (var i = 0; i < contributors.length; i++) {
+          if (contributors[i] === userID) {
+            hasContributed = true;
+            break;
+          }
+        }
+
+        if (hasContributed) {
+          $scope.canContribute = 1;
+        } else if ($scope.pitch.creator.id === userID) {
+          $scope.canContribute = 2;
+        } else if (contributors.length === $scope.pitch.pitchers.required) {
+          $scope.canContribute = 3;
+        }
+
         // Set center for map
         $scope.map.center.lat = $scope.pitch.location.latitude;
         $scope.map.center.lng = $scope.pitch.location.longitude;
@@ -47,26 +67,6 @@ angular.module('app')
 
       // Set data for photo viewer
       $scope.photos = [$scope.pitch.image];
-
-      // Determine if can pitch in
-      var userID = UserService.user().id
-        , hasContributed = false
-        , contributors = $scope.pitch.pitchers.contributed;
-
-      for (var i = 0; i < contributors.length; i++) {
-        if (contributors[i] === userID) {
-          hasContributed = true;
-          break;
-        }
-      }
-
-      if (hasContributed) {
-        $scope.canContribute = 1;
-      } else if ($scope.pitch.creator.id === userID) {
-        $scope.canContribute = 2;
-      } else if (contributors.length === $scope.pitch.pitchers.required) {
-        $scope.canContribute = 3;
-      }
 
       // Determine if favorite
       updateFavorite($scope.pitch.id);
@@ -170,7 +170,7 @@ angular.module('app')
 
   $scope.contribute = function () {
     // Start loading
-    var loading = $ionicLoading.show();
+    $ionicLoading.show();
 
     var res = new PitchesResource({ id: $scope.pitch.id });
     res.$contribute();
@@ -184,7 +184,7 @@ angular.module('app')
 
       // Hide modal and loading
       $scope.hideModalPitch();
-      loading.hide();
+      $ionicLoading.hide();
     });
   };
 
