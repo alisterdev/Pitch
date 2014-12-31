@@ -26,10 +26,10 @@
             <option value="">Choose</option>
           </select>
         </label>
-        <ion-item class="item-stacked-label-content" href="" on-tap="showModalLocation()" ng-class="{ 'item-error-content': formCreatePitch.location.$dirty && formCreatePitch.location.$invalid, 'item-valid-content': formCreatePitch.location.$valid }">
+        <ion-item class="item-stacked-label-content" href="" on-tap="showModalLocation()" ng-class="{ 'item-error-content': (formCreatePitch.location.$dirty || formCreatePitch.locationCoords.$dirty) && (formCreatePitch.location.$invalid || formCreatePitch.locationCoords.$invalid), 'item-valid-content': formCreatePitch.location.$valid && formCreatePitch.locationCoords.$valid }">
           <span class="input-label">Location</span>
           <input class="hide" name="location" ng-model="pitch.location.title" ng-minlength="1" required>
-          <input class="hide" name="location" ng-model="map.markers.origin" required>
+          <input class="hide" name="locationCoords" ng-model="map.markers.origin" required>
           <p ng-class="{ disabled: !pitch.location.title }">{{ pitch.location.title || "Engineering 42" }}</p>
         </ion-item>
         <label class="item item-input item-stacked-label" ng-class="{ 'item-error': formCreatePitch.pitchDate.$dirty && formCreatePitch.pitchDate.$invalid, 'item-valid': formCreatePitch.pitchDate.$valid }">
