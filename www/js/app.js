@@ -9,6 +9,11 @@ angular.module('app', ['ionic', 'ionic.contrib.icon', 'ngResource', 'LocalStorag
   });
 })
 
+// Configure default loading
+.constant('$ionicLoadingConfig', {
+  template: '<i class="icon ion-ios-loop-strong"></i>'
+})
+
 .config(function ($stateProvider, $urlRouterProvider, $cordovaFacebookProvider, localStorageServiceProvider) {
 
   // Configure local storage

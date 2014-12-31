@@ -53,7 +53,7 @@ angular.module('app')
         , hasContributed = false
         , contributors = $scope.pitch.pitchers.contributed;
 
-      for (var i = 0; i < contributors; i++) {
+      for (var i = 0; i < contributors.length; i++) {
         if (contributors[i] === userID) {
           hasContributed = true;
           break;
@@ -163,6 +163,26 @@ angular.module('app')
     }).then(function (modal) {
       $scope.modalPitch = modal;
       $scope.modalPitch.show();
+    });
+  };
+
+  $scope.contribute = function () {
+    // Start loading
+    var loading = $ionicLoading.show();
+
+    var res = new PitchesResource({ id: $scope.pitch.id });
+    res.$contribute();
+
+    res.$promise.then(function () {
+      // Update pitch
+      $scope.pitch = res;
+
+      // Set contributed state
+      $scope.hasPitchedIn = 1;
+
+      // Hide modal and loading
+      $scope.hideModalPitch();
+      loading.hide();
     });
   };
 
