@@ -52,6 +52,7 @@ var files = {
 var paths = {
   js: ['./app/js/**/*.js'],
   sass: ['./app/sass/**/*.scss'],
+  templates: files.templates,
   general: files.general
 };
 
@@ -109,6 +110,7 @@ gulp.task('sass', ['clean'], function() {
 
 gulp.task('watch', function() {
   gulp.watch(paths.general, ['move:general']);
+  gulp.watch(paths.templates, ['move:templates']);
   gulp.watch(paths.js, ['concat:js']);
   gulp.watch(paths.sass, ['sass']);
 });
