@@ -56,6 +56,8 @@ var paths = {
 
 gulp.task('default', ['move:fonts', 'move:templates', 'move:general', 'move:facebook', 'concat:css', 'concat:js', 'sass']);
 
+gulp.task('build', ['move:fonts', 'move:templates', 'move:general', 'concat:css', 'concat:js', 'sass']);
+
 gulp.task('clean', function() {
   return gulp.src('./www/**/*.*', { read: false })
     .pipe(clean());
