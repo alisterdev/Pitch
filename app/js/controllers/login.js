@@ -1,6 +1,8 @@
 angular.module('app')
 
-.controller('LoginCtrl', function ($scope, $state, $cordovaFacebook, UsersResource, UserService, DEC) {
+.controller('LoginCtrl', function ($scope, $state, $ionicPopup, $cordovaFacebook, UsersResource, UserService, DEC) {
+
+  var user = UserService.user();
 
   // Check once if need to show intro
   if (!UserService.hasViewedIntro()) {
@@ -8,9 +10,21 @@ angular.module('app')
     UserService.hasViewedIntro(true);
 
     $state.go('intro');
-  } else if (typeof UserService.user().community === 'object') {
+  } else if (typeof user.community === 'object') {
     $state.go('tab.featured');
-  } else if (UserService.user().accessToken !== '@accessToken') {
+  } else if (typeof user.verified !== 'undefined') {
+    if (user.verified.status) {
+      $state.go('tab.featured');
+    } else if (user.verified.slug) {
+      // Show message
+      $ionicPopup.alert({
+        title: 'Confirm Community Registration',
+        template: 'A confirmation email has already been sent to you. Please confirm your registration to the community to gain access to Pitch.'
+      });
+    } else {
+      $state.go('join');
+    }
+  } else if (user.accessToken !== '@accessToken') {
     $state.go('join');
   }
 
@@ -23,7 +37,19 @@ angular.module('app')
     UserService.user(user);
     UserService.facebookAccessToken(facebookAccessToken);
 
-    if (!user.community) {
+    if (typeof user.verified !== 'undefined') {
+      if (user.verified.status) {
+        $state.go('tab.featured');
+      } else if (user.verified.slug) {
+        // Show message
+        $ionicPopup.alert({
+          title: 'Confirm Community Registration',
+          template: 'A confirmation email has already been sent to you. Please confirm your registration to the community to gain access to Pitch.'
+        });
+      } else {
+        $state.go('join');
+      }
+    } else if (!user.community) {
       $state.go('join');
     } else {
       $state.go('tab.featured');
