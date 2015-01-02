@@ -51,7 +51,8 @@ var files = {
 
 var paths = {
   js: ['./app/js/**/*.js'],
-  sass: ['./app/sass/**/*.scss']
+  sass: ['./app/sass/**/*.scss'],
+  general: files.general
 };
 
 gulp.task('default', ['move:fonts', 'move:templates', 'move:general', 'move:facebook', 'concat:css', 'concat:js', 'sass']);
@@ -79,8 +80,8 @@ gulp.task('move:general', ['clean'], function() {
 });
 
 gulp.task('move:facebook', ['clean'], function() {
-  gulp.src(files.facebook, { base: './app' })
-    .pipe(gulp.dest(dest.general));
+  gulp.src(files.facebook)
+    .pipe(gulp.dest(dest.js));
 });
 
 gulp.task('concat:css', ['clean'], function() {
@@ -107,7 +108,8 @@ gulp.task('sass', ['clean'], function() {
 });
 
 gulp.task('watch', function() {
-  gulp.watch(paths.js, ['concat.js']);
+  gulp.watch(paths.general, ['move:general']);
+  gulp.watch(paths.js, ['concat:js']);
   gulp.watch(paths.sass, ['sass']);
 });
 

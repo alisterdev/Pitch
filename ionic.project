@@ -2,7 +2,8 @@
   "name": "pitch-app",
   "app_id": "",
   "gulpStartupTasks": [
-    "gulp"
+    "default",
+    "watch"
   ],
   "watchPatterns": [
     
