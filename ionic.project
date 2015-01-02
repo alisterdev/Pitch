@@ -2,12 +2,10 @@
   "name": "pitch-app",
   "app_id": "",
   "gulpStartupTasks": [
-    "sass",
-    "watch"
+    "gulp"
   ],
   "watchPatterns": [
-    "www/**/*",
-    "!www/lib/**/*"
+    
   ],
   "proxies": [
     {

@@ -1,0 +1,11 @@
+<ion-modal-view>
+  <ion-content class="black-bg" scroll="false" on-tap="hideModalPhoto()">
+
+    <ion-slide-box class="scroll" delegate-handle="photoViewer" show-pager="false">
+      <ion-slide ng-repeat="p in photos" class="vertical-center-container">
+        <img class="full-image vertical-center" ng-src="{{ p }}">
+      </ion-slide>
+    </ion-slide-box>
+
+  </ion-content>
+</ion-modal-view>
