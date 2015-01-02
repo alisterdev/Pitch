@@ -7,7 +7,7 @@
   "dependencies": {
     "ionic-contrib-icon": "~0.0.3",
     "ionicons": "~2.0.0",
-    "angular-cached-resource": "~1.0.7",
+    "angular-cached-resource": "~1.0.8",
     "angular-local-storage": "~0.1.5",
     "ngCordova": "~0.1.9-alpha",
     "angular-leaflet-directive": "~0.7.10",
