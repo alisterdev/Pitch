@@ -1,4 +1,5 @@
 var gulp = require('gulp');
+var gulpsync = require('gulp-sync')(gulp);
 var gutil = require('gulp-util');
 var bower = require('bower');
 var concat = require('gulp-concat');
@@ -56,7 +57,7 @@ var paths = {
   general: files.general
 };
 
-gulp.task('default', ['move:fonts', 'move:templates', 'move:general', 'move:facebook', 'concat:css', 'concat:js', 'sass']);
+gulp.task('default', gulpsync.sync(['clean', 'move:fonts', 'move:templates', 'move:general', 'move:facebook', 'concat:css', 'concat:js', 'sass']));
 
 gulp.task('build', ['move:fonts', 'move:templates', 'move:general', 'concat:css', 'concat:js', 'sass']);
 
@@ -65,39 +66,39 @@ gulp.task('clean', function() {
     .pipe(clean());
 });
 
-gulp.task('move:fonts', ['clean'], function() {
+gulp.task('move:fonts', function() {
   gulp.src(files.fonts)
     .pipe(gulp.dest(dest.fonts));
 });
 
-gulp.task('move:templates', ['clean'], function() {
+gulp.task('move:templates', function() {
   gulp.src(files.templates)
     .pipe(gulp.dest(dest.templates));
 });
 
-gulp.task('move:general', ['clean'], function() {
+gulp.task('move:general', function() {
   gulp.src(files.general)
     .pipe(gulp.dest(dest.general));
 });
 
-gulp.task('move:facebook', ['clean'], function() {
+gulp.task('move:facebook', function() {
   gulp.src(files.facebook)
     .pipe(gulp.dest(dest.js));
 });
 
-gulp.task('concat:css', ['clean'], function() {
+gulp.task('concat:css', function() {
   gulp.src(files.css)
     .pipe(concat('app.css'))
     .pipe(gulp.dest(dest.css));
 });
 
-gulp.task('concat:js', ['clean'], function() {
+gulp.task('concat:js', function() {
   gulp.src(files.js)
     .pipe(concat('app.js'))
     .pipe(gulp.dest(dest.js));
 });
 
-gulp.task('sass', ['clean'], function() {
+gulp.task('sass', function() {
   gulp.src(files.sass)
     .pipe(sass())
     .pipe(gulp.dest(dest.css))
