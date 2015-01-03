@@ -1,6 +1,7 @@
 var gulp = require('gulp');
 var gulpsync = require('gulp-sync')(gulp);
 var gutil = require('gulp-util');
+var include = require('gulp-include');
 var bower = require('bower');
 var concat = require('gulp-concat');
 var sass = require('gulp-sass');
@@ -57,7 +58,7 @@ var paths = {
   general: files.general
 };
 
-gulp.task('default', gulpsync.sync(['clean', 'move:fonts', 'move:templates', 'move:general', 'move:facebook', 'concat:css', 'concat:js', 'sass']));
+gulp.task('default', gulpsync.sync(['clean', 'move:fonts', 'move:templates', 'move:facebook', 'include:general', 'concat:css', 'concat:js', 'sass']));
 
 gulp.task('build', ['move:fonts', 'move:templates', 'move:general', 'concat:css', 'concat:js', 'sass']);
 
@@ -84,6 +85,12 @@ gulp.task('move:general', function() {
 gulp.task('move:facebook', function() {
   gulp.src(files.facebook)
     .pipe(gulp.dest(dest.js));
+});
+
+gulp.task('include:general', function() {
+  gulp.src(files.general)
+    .pipe(include())
+    .pipe(gulp.dest(dest.general));
 });
 
 gulp.task('concat:css', function() {

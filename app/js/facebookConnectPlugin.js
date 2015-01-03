@@ -177,11 +177,14 @@ if (!window.cordova) {
           var e = document.createElement('script');
           e.src = document.location.protocol + '//connect.facebook.net/en_US/sdk.js';
           e.async = true;
-          document.getElementById('fb-root').appendChild(e);
+          var fb = document.createElement('div');
+          fb.style.display = 'none';
+          fb.appendChild(e);
+          document.getElementsByTagName('body')[0].appendChild(fb);
           if (!window.FB) {
               // Probably not on server, use the sample sdk
               e.src = 'phonegap/plugin/facebookConnectPlugin/fbsdk.js';
-              document.getElementById('fb-root').appendChild(e);
+              fb.appendChild(e);
               console.log("Attempt local load: ", e);
           }
       }
