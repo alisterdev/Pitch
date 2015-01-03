@@ -1,19 +1,16 @@
 angular.module('app')
 
-.controller('JoinCtrl', function ($scope, $state, $ionicPopup, CommunitiesResource, UsersResource, UserService) {
+.controller('JoinCtrl', function ($scope, $state, $cordovaDialogs, CommunitiesResource, UsersResource, UserService) {
 
   $scope.join = function (data) {
     var res = new UsersResource(data);
 
-    res.$join(function () {
+    res.$join(function (data) {
       // Store new user data
-      UserService.user(res);
+      UserService.user(data);
 
       // Show confirmation
-      $ionicPopup.alert({
-        title: 'Confirmation Sent',
-        template: 'An email has been sent with a confirmation link. Confirm your registration to gain access to Pitch.'
-      });
+      $cordovaDialogs.alert('An email has been sent with a confirmation link. Confirm your registration to gain access to Pitch.', 'Confirmation Sent');
     }, function (err) {
 
     });
