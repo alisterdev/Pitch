@@ -60,7 +60,7 @@ var paths = {
 
 gulp.task('default', gulpsync.sync(['clean', 'move:fonts', 'move:templates', 'move:facebook', 'include:general', 'concat:css', 'concat:js', 'sass']));
 
-gulp.task('build', ['move:fonts', 'move:templates', 'move:general', 'concat:css', 'concat:js', 'sass']);
+gulp.task('build', gulpsync.sync(['clean', 'move:fonts', 'move:templates', 'move:general', 'concat:css', 'concat:js', 'sass']));
 
 gulp.task('clean', function() {
   return gulp.src('./www/**/*.*', { read: false })
