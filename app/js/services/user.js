@@ -7,6 +7,8 @@ angular.module('app')
       localStorageService.set('user', user);
     }
 
+    // localStorageService.clearAll();
+
     var user = Object(localStorageService.get('user'));
     if (angular.isDefined(user) && (Object.keys(user)).length == 0) {
       return { accessToken: '@accessToken' };
