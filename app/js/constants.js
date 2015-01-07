@@ -1,11 +1,11 @@
 angular.module('app')
 
 .constant('SERVER', {
-  url: 'http://2fc82fb2.ngrok.com'
+  url: '/server'
 })
 
 .constant('API', {
-  url: 'http://2fc82fb2.ngrok.com/api/v1'
+  url: '/api/v1'
 })
 
 // Database Error Codes
