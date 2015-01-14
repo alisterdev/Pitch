@@ -6,6 +6,10 @@ angular.module('app', ['ionic', 'ionic.contrib.icon', 'ngResource', 'LocalStorag
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
+
+    if (window.cordova) {
+      cordova.plugins.Keyboard.disableScroll(true);
+    }
   });
 })
 
