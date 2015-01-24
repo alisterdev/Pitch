@@ -5,13 +5,6 @@ _Pitch is a mobile app that lets students split their daily expenses with other 
 
 # Setup
 
-Make sure install the Cordova and Ionic CLI:
-
-```shell
-$ npm install -g cordova
-$ npm install -g ionic
-```
-
 Install the required project dependencies:
 
 ```shell
