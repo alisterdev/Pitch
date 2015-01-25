@@ -7,9 +7,8 @@ angular.module('app', ['ionic', 'ionic.contrib.icon', 'ngResource', 'LocalStorag
       StatusBar.styleDefault();
     }
 
-    if (window.cordova && window.plugins.Keyboard) {
+    if (window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.disableScroll(true);
-      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
     }
   });
 })
