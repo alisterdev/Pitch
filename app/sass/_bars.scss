@@ -9,3 +9,27 @@
     }
   }
 }
+
+.bar-footer.bar-footer-transparent {
+  border-top-width: 0;
+}
+
+.bar-search {
+  width: 100%;
+
+  input {
+    width: 90%;
+  }
+
+  .button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    height: 29px;
+    font-size: 12px;
+
+    &.icon:before {
+      font-size: 17px !important;
+    }
+  }
+}

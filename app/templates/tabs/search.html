@@ -2,11 +2,11 @@
   <ion-nav-title class="item-input-inset">
     <label class="item-input-wrapper">
       <i class="icon ion-ios-search placeholder-icon"></i>
-      <form>
-        <input type="search" placeholder="Search" ng-model="$parent.query" on-enter="search(query)" required>
+      <form class="bar-search">
+        <input type="search" placeholder="Search" ng-model="$parent.query" on-enter="search(query)">
+        <button class="button button-clear icon ion-ios-close hide" ng-class="{ show: query }" on-tap="cancelSearch($event)"></button>
       </form>
     </label>
-    <button class="button button-clear hide" ng-class="{ show: query }" on-tap="cancelSearch()">Cancel</button>
   </ion-nav-title>
   <ion-content scroll="false">
 

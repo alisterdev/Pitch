@@ -20,10 +20,19 @@ angular.module('app')
     });
   };
 
-  $scope.cancelSearch = function () {
+  $scope.cancelSearch = function (e) {
     $scope.results = [];
     $scope.hasResults = false;
     $scope.query = null;
+
+    // Prevent input to be triggered
+    e.gesture.srcEvent.preventDefault();
+    e.gesture.srcEvent.stopPropagation();
+
+    // Hide keyboard
+    if (window.cordova && window.cordova.plugins.Keyboard) {
+      cordova.plugins.Keyboard.close();
+    }
   };
 
   $scope.viewPitch = function (id) {
