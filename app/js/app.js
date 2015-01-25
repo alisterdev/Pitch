@@ -15,7 +15,7 @@ angular.module('app', ['ionic', 'ionic.contrib.icon', 'ngResource', 'LocalStorag
 
 // Configure default loading
 .constant('$ionicLoadingConfig', {
-  template: '<i class="icon ion-ios-loop-strong"></i>'
+  template: '<img style="75px;" class="animate-loading" src="img/pitch.png" />'
 })
 
 .config(function ($stateProvider, $urlRouterProvider, $cordovaFacebookProvider, localStorageServiceProvider) {

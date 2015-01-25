@@ -13,6 +13,7 @@ var sh = require('shelljs');
 var dest = {
   css: './www/css',
   js: './www/js',
+  img: './www/img',
   fonts: './www/fonts',
   templates: './www/templates',
   general: './www/'
@@ -33,6 +34,9 @@ var files = {
     './app/lib/ngCordova/dist/ng-cordova.js',
     './app/js/**/*.js',
     '!./app/js/facebookConnectPlugin.js'
+  ],
+  img: [
+    './app/img/*.*'
   ],
   fonts: [
     './app/lib/ionicons/fonts/**/*.*'
@@ -58,9 +62,9 @@ var paths = {
   general: files.general
 };
 
-gulp.task('default', gulpsync.sync(['clean', 'move:fonts', 'move:templates', 'move:facebook', 'include:general', 'concat:css', 'concat:js', 'sass']));
+gulp.task('default', gulpsync.sync(['clean', 'move:fonts', 'move:img', 'move:templates', 'move:facebook', 'include:general', 'concat:css', 'concat:js', 'sass']));
 
-gulp.task('build', gulpsync.sync(['clean', 'move:fonts', 'move:templates', 'move:general', 'concat:css', 'concat:js', 'sass']));
+gulp.task('build', gulpsync.sync(['clean', 'move:fonts', 'move:img', 'move:templates', 'move:general', 'concat:css', 'concat:js', 'sass']));
 
 gulp.task('clean', function() {
   return gulp.src('./www/**/*.*', { read: false })
@@ -70,6 +74,11 @@ gulp.task('clean', function() {
 gulp.task('move:fonts', function() {
   gulp.src(files.fonts)
     .pipe(gulp.dest(dest.fonts));
+});
+
+gulp.task('move:img', function() {
+  gulp.src(files.img)
+  .pipe(gulp.dest(dest.img));
 });
 
 gulp.task('move:templates', function() {

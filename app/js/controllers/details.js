@@ -25,6 +25,12 @@ angular.module('app')
   }
 
   $scope.getPitch = function () {
+    // Show loading if takes too long
+    $ionicLoading.show({
+      noBackdrop: true,
+      delay: 500
+    });
+
     var res = PitchesResource.get({ id: id });
 
     res.$httpPromise.then(function () {
@@ -68,6 +74,9 @@ angular.module('app')
 
       // Determine if favorite
       updateFavorite($scope.pitch.id);
+
+      // Hide loading
+      $ionicLoading.hide();
     }, function (err) {
       // If error, remove from favorites and go back a view
       var favorites = UserService.favorites();

@@ -1,9 +1,9 @@
 <ion-view>
   <ion-nav-title>{{ pitch.title }}</ion-nav-title>
   <ion-nav-buttons side="right">
-    <button class="button button-icon button-favorite" ng-class="{ 'ion-ios-heart': isFavorite, 'ion-ios-heart-outline': !isFavorite }" on-release="favoritePitch()"></button>
+    <button class="button button-icon button-favorite ng-hide fade" ng-show="pitch" ng-class="{ 'ion-ios-heart': isFavorite, 'ion-ios-heart-outline': !isFavorite }" on-release="favoritePitch()"></button>
   </ion-nav-buttons>
-  <ion-content>
+  <ion-content ng-show="pitch" class="ng-hide fade">
 
     <div class="blocky blocky-balanced balanced-bg text-featurette text-center light" ng-show="canContribute">
       <span ng-show="canContribute === 1">Pitched In</span>

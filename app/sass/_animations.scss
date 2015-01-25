@@ -1,0 +1,24 @@
+.fade {
+  opacity: 1;
+  @include transition(opacity 0.5s ease);
+
+  &.ng-hide {
+    opacity: 0;
+  }
+}
+
+.animate-loading {
+  @include animation(animation-loading 1s);
+  @include animation-direction(alternate);
+  @include animation-iteration-count(infinite);
+}
+
+@-webkit-keyframes animation-loading {
+  0% { @include scale(1); }
+  100% { @include scale(0.7); }
+}
+
+@keyframes animation-loading {
+  0% { @include scale(1); }
+  100% {@include scale(0.7); }
+}

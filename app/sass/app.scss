@@ -1,6 +1,7 @@
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../fonts" !default;
 $button-border-radius: 0;
+$loading-bg-color: transparent;
 
 // Include all of Ionic
 @import "app/lib/ionic/scss/ionic";
@@ -20,3 +21,4 @@ $button-border-radius: 0;
 @import "maps";
 @import "tabs";
 @import "spacing";
+@import "animations";
