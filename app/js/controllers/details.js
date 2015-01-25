@@ -1,6 +1,6 @@
 angular.module('app')
 
-.controller('DetailsCtrl', function ($scope, $stateParams, $ionicModal, $ionicLoading, $ionicSlideBoxDelegate, $ionicHistory, $ionicPlatform, $cordovaCalendar, MapService, PitchesResource, UserService) {
+.controller('DetailsCtrl', function ($scope, $stateParams, $ionicModal, $ionicLoading, $ionicSlideBoxDelegate, $ionicHistory, $ionicPlatform, $cordovaCalendar, leafletData, MapService, PitchesResource, UserService) {
   // Get pitch id
   var id = $stateParams.id;
 
@@ -74,6 +74,11 @@ angular.module('app')
 
       // Determine if favorite
       updateFavorite($scope.pitch.id);
+
+      // Resize map
+      leafletData.getMap().then(function(map) {
+        map._onResize();
+      });
 
       // Hide loading
       $ionicLoading.hide();
