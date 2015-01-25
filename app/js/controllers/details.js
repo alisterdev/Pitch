@@ -1,6 +1,6 @@
 angular.module('app')
 
-.controller('DetailsCtrl', function ($scope, $timeout, $stateParams, $ionicModal, $ionicLoading, $ionicSlideBoxDelegate, $ionicHistory, $ionicPlatform, $cordovaCalendar, MapService, PitchesResource, UserService) {
+.controller('DetailsCtrl', function ($scope, $stateParams, $ionicModal, $ionicLoading, $ionicSlideBoxDelegate, $ionicHistory, $ionicPlatform, $cordovaCalendar, MapService, PitchesResource, UserService) {
   // Get pitch id
   var id = $stateParams.id;
 
@@ -27,43 +27,41 @@ angular.module('app')
   $scope.getPitch = function (noCache) {
     var res = PitchesResource.get({ id: id });
 
-    res.$promise.then(function () {
+    res.$httpPromise.then(function () {
       $scope.pitch = res;
 
       // Update rating
       $scope.rating = $scope.pitch.creator.rating.value;
 
-      $timeout(function () {
-        // Determine if can pitch in
-        var userID = UserService.user().id
-          , hasContributed = false
-          , contributors = $scope.pitch.pitchers.contributed;
+      // Determine if can pitch in
+      var userID = UserService.user().id
+        , hasContributed = false
+        , contributors = $scope.pitch.pitchers.contributed;
 
-        for (var i = 0; i < contributors.length; i++) {
-          if (contributors[i] === userID) {
-            hasContributed = true;
-            break;
-          }
+      for (var i = 0; i < contributors.length; i++) {
+        if (contributors[i] === userID) {
+          hasContributed = true;
+          break;
         }
+      }
 
-        if (hasContributed) {
-          $scope.canContribute = 1;
-        } else if ($scope.pitch.creator.id === userID) {
-          $scope.canContribute = 2;
-        } else if (contributors.length === $scope.pitch.pitchers.required) {
-          $scope.canContribute = 3;
-        }
+      if (hasContributed) {
+        $scope.canContribute = 1;
+      } else if ($scope.pitch.creator.id === userID) {
+        $scope.canContribute = 2;
+      } else if (contributors.length === $scope.pitch.pitchers.required) {
+        $scope.canContribute = 3;
+      }
 
-        // Set center for map
-        $scope.map.center.lat = $scope.pitch.location.latitude;
-        $scope.map.center.lng = $scope.pitch.location.longitude;
+      // Set center for map
+      $scope.map.center.lat = $scope.pitch.location.latitude;
+      $scope.map.center.lng = $scope.pitch.location.longitude;
 
-        // Add marker to map
-        $scope.map.markers['origin'] = {
-          lat: $scope.map.center.lat,
-          lng: $scope.map.center.lng
-        };
-      }, 100);
+      // Add marker to map
+      $scope.map.markers['origin'] = {
+        lat: $scope.map.center.lat,
+        lng: $scope.map.center.lng
+      };
 
       // Set data for photo viewer
       $scope.photos = [$scope.pitch.image];
