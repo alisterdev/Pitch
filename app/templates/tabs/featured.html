@@ -6,7 +6,7 @@
 
     <!-- featured -->
     <ion-slide-box show-pager="false" does-continue="true" auto-play="true">
-      <ion-slide ng-repeat="f in featured">
+      <ion-slide ng-repeat="f in featured track by f.id">
 
         <div class="card card-featured" on-tap="viewPitch(f.id)">
           <div class="card-image" background-image="f.image">
