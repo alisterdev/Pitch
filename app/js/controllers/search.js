@@ -1,6 +1,6 @@
 angular.module('app')
 
-.controller('SearchCtrl', function ($scope, $state, PitchesResource) {
+.controller('SearchCtrl', function ($scope, $state, PitchesResource, Utils) {
 
   // Test data
   $scope.trending = [
@@ -18,6 +18,9 @@ angular.module('app')
       $scope.results = res;
       $scope.hasResults = true;
     });
+
+    // Hide keyboard
+    Utils.hideKeyboard();
   };
 
   $scope.cancelSearch = function (e) {
@@ -30,9 +33,7 @@ angular.module('app')
     e.gesture.srcEvent.stopPropagation();
 
     // Hide keyboard
-    if (window.cordova && window.cordova.plugins.Keyboard) {
-      cordova.plugins.Keyboard.close();
-    }
+    Utils.hideKeyboard();
   };
 
   $scope.viewPitch = function (id) {
