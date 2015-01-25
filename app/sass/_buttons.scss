@@ -7,6 +7,15 @@
     font-weight: 500 !important;
   }
 
+  &.button-clean {
+    border-width: 0;
+  }
+
+  &.button-clean-bottom {
+    border-width: 0;
+    border-bottom-width: 1px;
+  }
+
   &.button-favorite {
     @extend .assertive;
 
@@ -26,5 +35,17 @@
 .button-bar {
   &.button-bar-light {
     background-color: $background-light;
+  }
+
+  &.button-bar-distinct {
+    border-top: 1px solid $energized;
+
+    > button:last-child {
+      border-left: 1px solid $energized;
+    }
+  }
+
+  > button.button-clean:last-child {
+    border-right-width: 0;
   }
 }

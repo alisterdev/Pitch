@@ -1,58 +1,57 @@
 <ion-view>
-  <ion-nav-title></ion-nav-title>
+  <ion-nav-title>{{ pitch.title }}</ion-nav-title>
   <ion-nav-buttons side="right">
     <button class="button button-icon button-favorite" ng-class="{ 'ion-ios-heart': isFavorite, 'ion-ios-heart-outline': !isFavorite }" on-release="favoritePitch()"></button>
   </ion-nav-buttons>
   <ion-content>
 
+    <div class="blocky blocky-balanced balanced-bg text-featurette text-center light" ng-show="canContribute">
+      <span ng-show="canContribute === 1">Pitched In</span>
+      <span ng-show="canContribute === 2">You've created this pitch</span>
+      <span ng-show="canContribute === 3">Pitch succesfully funded</span>
+    </div>
+
     <div class="card-image" background-image="pitch.image" on-tap="showModalPhoto()">
       <div class="card-overlay vertical-center-container">
-        <h3 class="vertical-center text-featurette text-center blocky blocky-light blocky-center">{{ pitch.title }}</h3>
+        <h3 class="vertical-center text-featurette text-center">{{ pitch.title }}</h3>
       </div>
     </div>
 
+    <div class="button-bar" ng-hide="canContribute">
+      <button class="button button-clean button-balanced">{{ pitch.price | currency }}</button>
+      <button class="button button-clean button-outline button-balanced" on-tap="showModalPitch()">Pitch In</button>
+    </div>
+
+    <button class="button button-clean button-block-no-margin button-positive icon-left ion-ios-people">
+      {{ pitch.pitchers.contributed.length }} / {{ pitch.pitchers.required }} contributed
+    </button>
+
+    <button class="button button-clean-bottom button-outline button-block-no-margin button-positive icon-left ion-ios-calendar-outline" on-tap="addCalendarEvent()">
+      {{ pitch.date | date }}
+    </button>
+
     <div class="padding">
-      <div class="button-bar" ng-hide="canContribute">
-        <button class="button button-balanced">{{ pitch.price | currency }}</button>
-        <button class="button button-outline button-balanced" on-tap="showModalPitch()">Pitch In</button>
-      </div>
+      <p class="text-featurette card-header">What You're Getting</p>
+      <p class="card-text no-margin">{{ pitch.description }}</p>
+    </div>
 
-      <div ng-show="canContribute">
-        <button class="button button-block button-balanced icon-right ion-ios-checkmark no-margin" ng-show="canContribute === 1">Pitched In</button>
-        <div class="blocky blocky-balanced balanced-bg light" ng-show="canContribute === 2">
-          Since you've created this pitch, other people will be able to contribute at {{ pitch.price | currency }} per pitcher.
-        </div>
-        <div class="button button-block button-assertive no-margin" ng-show="canContribute === 3">Pitch succesfully funded</div>
-      </div>
+    <div>
+      <p class="text-featurette card-header padding no-margin"><i class="icon ion-ios-location assertive"></i> Where To Meet</p>
+      <leaflet id="mapPitchLocation" defaults="map.defaults" center="map.center" markers="map.markers" width="100%" height="200px"></leaflet>
+    </div>
 
-      <div class="margin-top">
-        <button class="button button-block-no-margin button-positive icon-left ion-ios-people">{{ pitch.pitchers.contributed.length }} / {{ pitch.pitchers.required }} contributed</button>
-        <button class="button button-outline button-block-no-margin button-positive icon-left ion-ios-calendar-outline" on-tap="addCalendarEvent()">{{ pitch.date | date }}</button>
-      </div>
-
-      <div>
-        <div class="blocky margin-top">
-          <div class="background-thumbnail" background-image="pitch.creator.image"></div>
-          <div>
-            <p class="text-small text-featurette no-margin color-gray">Organizer</p>
-            <p class="text-featurette no-margin">{{ pitch.creator.name.first + ' ' + pitch.creator.name.last }}</p>
-            <p><stars class="energized" repeat="rating"></stars></p>
-          </div>
-        </div>
-        <div class="button-bar">
-          <button class="button button-outline button-dark">View Profile</button>
-          <button class="button button-outline button-dark">Contact {{ pitch.creator.name.first }}</button>
+    <div>
+      <div class="padding">
+        <div class="background-thumbnail" background-image="pitch.creator.image"></div>
+        <div>
+          <p class="text-small text-featurette no-margin color-gray">Organizer</p>
+          <p class="text-featurette no-margin">{{ pitch.creator.name.first + ' ' + pitch.creator.name.last }}</p>
+          <p><stars class="energized" repeat="rating"></stars></p>
         </div>
       </div>
-
-      <div class="blocky margin-top">
-        <p class="text-featurette text-center"><i class="icon ion-ios-medical"></i> What You're Getting</p>
-        <p>{{ pitch.description }}</p>
-      </div>
-
-      <div class="blocky blocky-assertive no-padding margin-top">
-        <p class="text-featurette text-center margin-top "><i class="icon ion-ios-location assertive"></i> Where To Meet</p>
-        <leaflet id="mapPitchLocation" defaults="map.defaults" center="map.center" markers="map.markers" width="100%" height="175px"></leaflet>
+      <div class="button-bar button-bar-distinct">
+        <button class="button button-clean button-light icon-left ion-ios-person-outline">View Profile</button>
+        <button class="button button-clean button-light icon-left ion-ios-email-outline">Contact {{ pitch.creator.name.first }}</button>
       </div>
     </div>
 

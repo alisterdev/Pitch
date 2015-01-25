@@ -95,7 +95,7 @@ gulp.task('include:general', function() {
 
 gulp.task('concat:css', function() {
   gulp.src(files.css)
-    .pipe(concat('app.css'))
+    .pipe(concat('vendor.css'))
     .pipe(gulp.dest(dest.css));
 });
 

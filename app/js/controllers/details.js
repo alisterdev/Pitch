@@ -24,7 +24,7 @@ angular.module('app')
     }
   }
 
-  $scope.getPitch = function (noCache) {
+  $scope.getPitch = function () {
     var res = PitchesResource.get({ id: id });
 
     res.$httpPromise.then(function () {
