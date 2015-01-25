@@ -30,6 +30,7 @@
     font-size: 12px;
 
     &.icon:before {
+      color: $input-color-placeholder;
       font-size: 17px !important;
     }
   }
