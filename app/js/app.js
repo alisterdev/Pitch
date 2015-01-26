@@ -10,6 +10,11 @@ angular.module('app', ['ionic', 'ionic.contrib.icon', 'ngResource', 'LocalStorag
     if (window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.disableScroll(true);
     }
+
+    if (window.navigator && window.navigator.splashscreen) {
+      // Manually hide splash screen (fix for white screen)
+      navigator.splashscreen.hide();
+    }
   });
 })
 
