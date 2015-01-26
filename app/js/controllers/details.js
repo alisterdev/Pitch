@@ -154,6 +154,11 @@ angular.module('app')
 
   // Photo functionality
   $scope.showModalPhoto = function () {
+    // Disable if no image
+    if (!$scope.pitch['image']) {
+      return false;
+    }
+
     if (typeof $scope.modalPhoto === 'undefined') {
       $ionicModal.fromTemplateUrl('templates/modals/photo.html', {
         scope: $scope,
