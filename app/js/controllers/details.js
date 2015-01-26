@@ -27,6 +27,7 @@ angular.module('app')
   $scope.getPitch = function () {
     // Show loading if takes too long
     $ionicLoading.show({
+      hideOnStateChange: true,
       noBackdrop: true,
       delay: 500
     });
