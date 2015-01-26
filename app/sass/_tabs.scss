@@ -1,4 +1,7 @@
 .tab-pitch {
+  position: relative;
+  top: -1px;
+  height: $tabs-height + 1px;
   opacity: 1;
 
   i {
