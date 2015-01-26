@@ -1,6 +1,6 @@
 angular.module('app')
 
-.service('UserService', function ($state, localStorageService) {
+.service('UserService', function ($state, $cachedResource, localStorageService) {
 
   this.user = function (user) {
     if (typeof user === 'object') {
@@ -17,8 +17,9 @@ angular.module('app')
 
   this.logout = function() {
     this.user({});
+    $cachedResource.clearCache();
     $state.go('login');
-  },
+  };
 
   this.facebookAccessToken = function (accessToken) {
     if (typeof accessToken === 'string') {
@@ -55,10 +56,10 @@ angular.module('app')
 })
 
 .factory('UsersResource', function ($cachedResource, UserService, Utils) {
-  return $cachedResource('resource.users', Utils.getApiUrl() + '/users/:id', { id: '@id', access_token: UserService.user().accessToken }, {
+  return $cachedResource('resource.users', Utils.getApiUrl() + '/users/:id', { id: '@id', access_token: function() { return UserService.user().accessToken; } }, {
     register: { method: 'POST', url: Utils.getServerUrl() + '/register', cache: false },
     oauth: { method: 'POST', url: Utils.getServerUrl() + '/oauth/access_token', cache: false },
-    me: { method: 'GET', url: Utils.getApiUrl() + '/me', params: { access_token: UserService.user().accessToken }, cache: false },
-    join: { method: 'POST', url:  Utils.getApiUrl() + '/me/join', params: { access_token: UserService.user().accessToken }, cache: false }
+    me: { method: 'GET', url: Utils.getApiUrl() + '/me', params: { access_token: function() { return UserService.user().accessToken; } }, cache: false },
+    join: { method: 'POST', url:  Utils.getApiUrl() + '/me/join', params: { access_token: function() { return UserService.user().accessToken; } }, cache: false }
   });
 });
