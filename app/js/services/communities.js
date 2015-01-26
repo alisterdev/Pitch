@@ -1,5 +1,5 @@
 angular.module('app')
 
-.factory('CommunitiesResource', function ($cachedResource, UserService, API) {
-  return $cachedResource('resource.communities', API.url + '/communities/:id', { id: '@id', access_token: UserService.user().accessToken });
+.factory('CommunitiesResource', function ($cachedResource, UserService, Utils) {
+  return $cachedResource('resource.communities', Utils.getApiUrl() + '/communities/:id', { id: '@id', access_token: UserService.user().accessToken });
 });

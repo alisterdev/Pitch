@@ -1,7 +1,7 @@
 angular.module('app')
 
 .service('UserService', function (localStorageService) {
-  
+
   this.user = function (user) {
     if (typeof user === 'object') {
       localStorageService.set('user', user);
@@ -35,7 +35,7 @@ angular.module('app')
     if (Object.keys(this.user()).length) {
       return true;
     }
-    
+
     return false;
   };
 
@@ -49,11 +49,11 @@ angular.module('app')
 
 })
 
-.factory('UsersResource', function ($cachedResource, UserService, SERVER, API) {
-  return $cachedResource('resource.users', API.url + '/users/:id', { id: '@id', access_token: UserService.user().accessToken }, {
-    register: { method: 'POST', url: SERVER.url + '/register', cache: false },
-    oauth: { method: 'POST', url: SERVER.url + '/oauth/access_token', cache: false },
-    me: { method: 'GET', url: API.url + '/me', params: { access_token: UserService.user().accessToken }, cache: false },
-    join: { method: 'POST', url:  API.url + '/me/join', params: { access_token: UserService.user().accessToken }, cache: false }
+.factory('UsersResource', function ($cachedResource, UserService, Utils) {
+  return $cachedResource('resource.users', Utils.getApiUrl() + '/users/:id', { id: '@id', access_token: UserService.user().accessToken }, {
+    register: { method: 'POST', url: Utils.getServerUrl() + '/register', cache: false },
+    oauth: { method: 'POST', url: Utils.getServerUrl() + '/oauth/access_token', cache: false },
+    me: { method: 'GET', url: Utils.getApiUrl() + '/me', params: { access_token: UserService.user().accessToken }, cache: false },
+    join: { method: 'POST', url:  Utils.getApiUrl() + '/me/join', params: { access_token: UserService.user().accessToken }, cache: false }
   });
 });
