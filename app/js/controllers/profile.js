@@ -1,6 +1,6 @@
 angular.module('app')
 
-.controller('ProfileCtrl', function ($scope, $state, localStorageService, UsersResource, UserService) {
+.controller('ProfileCtrl', function ($scope, localStorageService, UsersResource, UserService) {
 
   $scope.user = UserService.user();
 
@@ -17,8 +17,7 @@ angular.module('app')
   }
 
   $scope.logout = function () {
-    UserService.user({});
-    $state.go('login');
+    UserService.logout();
   };
 
   $scope.clearCache = function () {

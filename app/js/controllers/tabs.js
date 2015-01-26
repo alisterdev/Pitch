@@ -1,6 +1,6 @@
 angular.module('app')
 
-.controller('TabsCtrl', function ($scope, $rootScope, $state, $ionicHistory, UserService) {
+.controller('TabsCtrl', function ($rootScope, UserService, DEC) {
 
   // Useful helper function
   $rootScope.isEmpty = function (obj) {
@@ -9,5 +9,10 @@ angular.module('app')
     }
     return false;
   }
+
+  // Handle authentication errors
+  $rootScope.$on(DEC.unauthorized, function(e, data) {
+    UserService.logout();
+  });
 
 });

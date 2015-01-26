@@ -7,5 +7,6 @@ angular.module('app')
   },
   user: {
     none: 'user.none'
-  }
+  },
+  unauthorized: 'user.unauthorized'
 });

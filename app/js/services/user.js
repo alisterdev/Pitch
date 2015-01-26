@@ -1,6 +1,6 @@
 angular.module('app')
 
-.service('UserService', function (localStorageService) {
+.service('UserService', function ($state, localStorageService) {
 
   this.user = function (user) {
     if (typeof user === 'object') {
@@ -14,6 +14,11 @@ angular.module('app')
 
     return user;
   };
+
+  this.logout = function() {
+    this.user({});
+    $state.go('login');
+  },
 
   this.facebookAccessToken = function (accessToken) {
     if (typeof accessToken === 'string') {
