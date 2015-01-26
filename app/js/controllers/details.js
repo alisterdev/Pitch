@@ -89,6 +89,9 @@ angular.module('app')
       delete favorites[id];
       UserService.favorites(favorites);
 
+      // Hide loading
+      $ionicLoading.hide();
+
       $ionicHistory.goBack();
     });
   };
