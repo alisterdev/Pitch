@@ -1,0 +1,15 @@
+<ion-modal-view>
+  <ion-header-bar>
+    <div class="buttons">
+      <button class="button button-clear button-positive" on-tap="hideModalDescription()"><i class="icon ion-ios-arrow-back"></i> Back</button>
+    </div>
+    <h1 class="title">Description</h1>
+  </ion-header-bar>
+  <ion-content scroll="false">
+
+    <label class="item item-input item-stacked-label scroll">
+      <textarea style="height: 100%;" ng-model="$parent.pitch.description" ng-change="$parent.formCreatePitch.description.$dirty = true" placeholder="Each pitcher gets two slices of pizza."></textarea>
+    </label>
+
+  </ion-content>
+</ion-modal-view>
