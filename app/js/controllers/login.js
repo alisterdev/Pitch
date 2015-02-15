@@ -11,7 +11,7 @@ angular.module('app')
 
     $state.go('intro');
   } else if (typeof user.verified !== 'undefined') {
-    if (user.verified.status) {
+    if (user.verified.status && user.community) {
       $state.go('tab.featured');
     } else if (user.verified.slug) {
       // Show message
@@ -19,8 +19,6 @@ angular.module('app')
     } else {
       $state.go('join');
     }
-  } else if (typeof user.community === 'object') {
-    $state.go('tab.featured');
   } else if (user.accessToken !== '@accessToken') {
     $state.go('join');
   }
