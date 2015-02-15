@@ -13,7 +13,6 @@ angular.module('app')
 
     // Add additional pitch data
     pitch['community'] = user.community.id;
-    pitch['creator'] = user.id;
 
     // Post to API
     var res = new PitchesResource(pitch);
