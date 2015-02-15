@@ -17,14 +17,12 @@ angular.module('app')
 
     // Post to API
     var res = new PitchesResource(pitch);
-    res.$save();
-
-    res.$promise.then(function () {
+    res.$save(function() {
       // Update user
       UserService.user(res);
       deferred.resolve();
-    }, function(error) {
-      deferred.reject(error);
+    }, function(err) {
+      deferred.reject(err);
     });
 
     return deferred.promise;
