@@ -14,6 +14,9 @@ angular.module('app')
         user.verified.status && 
         user.community) {
       $state.go('tab.featured');
+    } else {
+      // Display login view content
+      $scope.visible = true;
     }
   });
 
