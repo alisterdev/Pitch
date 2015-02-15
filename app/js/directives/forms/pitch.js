@@ -1,6 +1,6 @@
 angular.module('app')
 
-.directive('formPitch', function ($ionicModal, $ionicLoading, MapService, CategoriesResource) {
+.directive('formPitch', function ($ionicModal, $ionicLoading, $ionicScrollDelegate, MapService, CategoriesResource) {
   return {
     restrict: 'E',
     scope: {
@@ -20,15 +20,22 @@ angular.module('app')
             $scope.pitch = {};
             $scope.formCreatePitch.$setPristine();
 
+            // Scroll top
+            $ionicScrollDelegate.scrollTop();
+
             // Show confirmation message
             $ionicLoading.show({
-              template: '<i class="icon icon-large ion-android-checkmark-circle balanced"></i> <p class="no-margin">Pitch created!</p>',
+              template: '<i class="icon icon-large ion-happy-outline balanced"></i> <p class="no-margin">Pitch created!</p>',
               duration: 1000,
               noBackdrop: true
             });
           }, function(error) {
             // Show error message
-            
+            $ionicLoading.show({
+              template: '<i class="icon icon-large ion-sad-outline assertive"></i> <p class="no-margin">Pitch could not be created...</p>',
+              duration: 1000,
+              noBackdrop: true
+            });
           });
       };
 

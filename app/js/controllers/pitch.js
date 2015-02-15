@@ -1,6 +1,6 @@
 angular.module('app')
 
-.controller('PitchCtrl', function ($scope, $q, $ionicLoading, PitchesResource, UserService) {
+.controller('PitchCtrl', function ($scope, $q, PitchesResource, UserService) {
 
   $scope.createPitch = function (pitch) {
     var deferred = $q.defer();
