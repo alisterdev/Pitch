@@ -1,7 +1,7 @@
-<ion-view hide-nav-bar="true" cache-view="false" class="hide" ng-class="{ show: visible }">
+<ion-view hide-nav-bar="true" cache-view="false">
   <ion-content scroll="false">
 
-    <div class="vertical-center-container">
+    <div class="vertical-center-container hide" ng-class="{ show: visible }">
       <div class="vertical-center padding">
         <h3 class="text-center text-featurette">Pitch In</h3>
 
@@ -10,7 +10,7 @@
     </div>
 
   </ion-content>
-  <ion-footer-bar class="bar-footer-transparent">
+  <ion-footer-bar class="bar-footer-transparent hide" ng-class="{ show: visible }">
     <button class="button button-clear" on-tap="goToIntro()">See Intro</button>
   </ion-footer-bar>
 </ion-view>
