@@ -4,24 +4,26 @@ angular.module('app')
 
   var user = UserService.user();
 
-  // Check once if need to show intro
-  if (!UserService.hasViewedIntro()) {
-    // Indicate that viewed intro
-    UserService.hasViewedIntro(true);
+  $scope.$on('$ionicView.enter', function() {
+    // Check once if need to show intro
+    if (!UserService.hasViewedIntro()) {
+      // Indicate that viewed intro
+      UserService.hasViewedIntro(true);
 
-    $state.go('intro');
-  } else if (typeof user.verified !== 'undefined') {
-    if (user.verified.status && user.community) {
-      $state.go('tab.featured');
-    } else if (user.verified.slug) {
-      // Show message
-      $cordovaDialogs.alert('A confirmation email has already been sent to you. Please confirm your registration to the community to gain access to Pitch.', 'Confirm Community Registration');
-    } else {
+      $state.go('intro');
+    } else if (typeof user.verified !== 'undefined') {
+      if (user.verified.status && user.community) {
+        $state.go('tab.featured');
+      } else if (user.verified.slug) {
+        // Show message
+        $cordovaDialogs.alert('A confirmation email has already been sent to you. Please confirm your registration to the community to gain access to Pitch.', 'Confirm Community Registration');
+      } else {
+        $state.go('join');
+      }
+    } else if (user.accessToken !== '@accessToken') {
       $state.go('join');
     }
-  } else if (user.accessToken !== '@accessToken') {
-    $state.go('join');
-  }
+  });
 
   $scope.goToIntro = function () {
     $state.go('intro');
