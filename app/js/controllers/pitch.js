@@ -16,7 +16,7 @@ angular.module('app')
 
     // Post to API
     var res = new PitchesResource(pitch);
-    res.$save(function() {
+    res.$save(function(res) {
       // Update user
       UserService.user(res);
       deferred.resolve();

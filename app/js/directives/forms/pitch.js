@@ -41,7 +41,7 @@ angular.module('app')
 
       // Default data
       $scope.map = {
-        defaults: MapService.defaults,
+        defaults: angular.extend(MapService.defaults, { dragging: true }),
         center: {
           lat: 43.64515935672089,
           lng: -79.3793910741806,

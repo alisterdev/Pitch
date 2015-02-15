@@ -1,12 +1,20 @@
 <ion-modal-view>
-  <ion-header-bar class="bar-balanced">
-    <h1 class="title">Pitch In</h1>
+  <ion-header-bar class="bar-balanced bar-header-transparent">
+    <h1 class="title">{{ pitch.title }}</h1>
     <button class="button button-clear" on-release="hideModalPitch()">Cancel</button>
   </ion-header-bar>
-  <ion-content class="balanced-bg">
+  <ion-content class="balanced-bg" scrollbar-y="false">
 
-    <div class="padding">
-      <button class="button button-block button-light" on-tap="contribute()">Contribute</button>
+    <div class="padding light">
+      <div class="text-center">
+        <h4 class="text-uppercase light">You pay</h4>
+        <h1 class="text-featurette no-margin light">{{ pitch.price | currency}}</h1>
+      </div>
+
+      <h4 class="text-center text-uppercase light">To get</h4>
+      <p>{{ pitch.description }}</p>
+
+      <button class="button button-block button-light" on-tap="contribute()">Pitch In</button>
     </div>
 
   </ion-content>

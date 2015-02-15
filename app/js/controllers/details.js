@@ -24,58 +24,62 @@ angular.module('app')
     }
   }
 
+  function updatePitch(pitch) {
+    $scope.pitch = pitch;
+
+    // Update rating
+    $scope.rating = $scope.pitch.creator.rating.value;
+
+    // Determine if can pitch in
+    var userID = UserService.user().id
+      , hasContributed = false
+      , contributors = $scope.pitch.pitchers.contributed;
+
+    for (var i = 0; i < contributors.length; i++) {
+      if (contributors[i] === userID) {
+        hasContributed = true;
+        break;
+      }
+    }
+
+    if (hasContributed) {
+      $scope.canContribute = 1;
+    } else if ($scope.pitch.creator.id === userID) {
+      $scope.canContribute = 2;
+    } else if (contributors.length === $scope.pitch.pitchers.required) {
+      $scope.canContribute = 3;
+    }
+
+    // Set center for map
+    $scope.map.center.lat = $scope.pitch.location.latitude;
+    $scope.map.center.lng = $scope.pitch.location.longitude;
+
+    // Add marker to map
+    $scope.map.markers['origin'] = {
+      lat: $scope.map.center.lat,
+      lng: $scope.map.center.lng
+    };
+
+    // Set data for photo viewer
+    $scope.photos = [$scope.pitch.image];
+
+    // Determine if favorite
+    updateFavorite($scope.pitch.id);
+
+    // Resize map
+    leafletData.getMap().then(function(map) {
+      map._onResize();
+    });
+
+    // Hide loading
+    $ionicLoading.hide();
+  }
+
   $scope.getPitch = function () {
     var res = PitchesResource.get({ id: id });
 
-    res.$httpPromise.then(function () {
-      $scope.pitch = res;
-
-      // Update rating
-      $scope.rating = $scope.pitch.creator.rating.value;
-
-      // Determine if can pitch in
-      var userID = UserService.user().id
-        , hasContributed = false
-        , contributors = $scope.pitch.pitchers.contributed;
-
-      for (var i = 0; i < contributors.length; i++) {
-        if (contributors[i] === userID) {
-          hasContributed = true;
-          break;
-        }
-      }
-
-      if (hasContributed) {
-        $scope.canContribute = 1;
-      } else if ($scope.pitch.creator.id === userID) {
-        $scope.canContribute = 2;
-      } else if (contributors.length === $scope.pitch.pitchers.required) {
-        $scope.canContribute = 3;
-      }
-
-      // Set center for map
-      $scope.map.center.lat = $scope.pitch.location.latitude;
-      $scope.map.center.lng = $scope.pitch.location.longitude;
-
-      // Add marker to map
-      $scope.map.markers['origin'] = {
-        lat: $scope.map.center.lat,
-        lng: $scope.map.center.lng
-      };
-
-      // Set data for photo viewer
-      $scope.photos = [$scope.pitch.image];
-
-      // Determine if favorite
-      updateFavorite($scope.pitch.id);
-
-      // Resize map
-      leafletData.getMap().then(function(map) {
-        map._onResize();
-      });
-
-      // Hide loading
-      $ionicLoading.hide();
+    res.$httpPromise.then(function (res) {
+      updatePitch(res);
     }, function (err) {
       // If error, remove from favorites and go back a view
       var favorites = UserService.favorites();
@@ -184,15 +188,13 @@ angular.module('app')
     $ionicLoading.show();
 
     var res = new PitchesResource({ id: $scope.pitch.id });
-    res.$contribute();
-
-    res.$promise.then(function () {
+    res.$contribute(function(res) {
       // Update pitch
-      $scope.pitch = res;
+      updatePitch(res);
 
-      // Set contributed state
-      $scope.canContribute = 1;
-
+      // Hide modal
+      $scope.hideModalPitch();
+    }, function(err) {
       // Hide modal and loading
       $scope.hideModalPitch();
       $ionicLoading.hide();
