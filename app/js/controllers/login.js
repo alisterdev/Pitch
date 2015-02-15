@@ -59,19 +59,30 @@ angular.module('app')
       if (err.data.code === DEC.user.none) {
         // Get user's name
         $cordovaFacebook.api('/me')
-          .then(function (res) {
-            // Register new user
-            var res = new UsersResource({
-              name: {
-                first: res.first_name,
-                last: res.last_name
-              },
-              facebook: userID
-            });
-            res.$register(function (data) {
-              accessApp(data, facebookAccessToken);
-            }, function (err) {
+          .then(function (data) {
+            // Get profile picture
+            $cordovaFacebook.api('/me/picture', { 
+              redirect: false,
+              type: 'square',
+              width: '100px',
+              height: '100px'
+            }).then(function(image) {
+              if (image.data.url) {
+                // Register new user
+                var res = new UsersResource({
+                  name: {
+                    first: data.first_name,
+                    last: data.last_name
+                  },
+                  facebook: userID,
+                  image: image.data.url
+                });
+                res.$register(function (data) {
+                  accessApp(data, facebookAccessToken);
+                }, function (err) {
 
+                });
+              }
             });
           }, function (err) {
 
