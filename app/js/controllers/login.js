@@ -9,19 +9,11 @@ angular.module('app')
     if (!UserService.hasViewedIntro()) {
       // Indicate that viewed intro
       UserService.hasViewedIntro(true);
-
       $state.go('intro');
-    } else if (typeof user.verified !== 'undefined') {
-      if (user.verified.status && user.community) {
-        $state.go('tab.featured');
-      } else if (user.verified.slug) {
-        // Show message
-        $cordovaDialogs.alert('A confirmation email has already been sent to you. Please confirm your registration to the community to gain access to Pitch.', 'Confirm Community Registration');
-      } else {
-        $state.go('join');
-      }
-    } else if (user.accessToken !== '@accessToken') {
-      $state.go('join');
+    } else if (typeof user.verified !== 'undefined' && 
+        user.verified.status && 
+        user.community) {
+      $state.go('tab.featured');
     }
   });
 
