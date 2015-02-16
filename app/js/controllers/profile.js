@@ -4,6 +4,36 @@ angular.module('app')
 
   $scope.user = UserService.user();
 
+  $scope.$watch('data', function(newVal, oldVal) {
+    if (newVal !== oldVal) {
+      // Compile upcoming events.
+      $scope.upcoming = getUpcomingEvents(newVal.pitches);
+
+      console.log($scope.upcoming);
+    }
+  });
+
+  function getUpcomingEvents(pitches) {
+    var today = new Date(),
+      upcoming = [];
+
+    pitches.created.forEach(function(p) {
+      if (new Date(p.date) >= today) {
+        upcoming.push(p);
+      }
+    });
+
+    pitches.funded.forEach(function(p) {
+      if (new Date(p.date) >= today) {
+        upcoming.push(p);
+      }
+    });
+
+    console.log(upcoming);
+
+    return upcoming;
+  }
+
   function updateUser () {
     var res = UsersResource.me();
 
@@ -19,7 +49,7 @@ angular.module('app')
     res = UsersResource.profile();
 
     res.$promise
-      .then(function() {
+      .then(function(res) {
         $scope.data = res;
       });
   }

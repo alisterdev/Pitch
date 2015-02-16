@@ -31,6 +31,13 @@
     <ion-list>
       <ion-item class="item-divider item-positive">
         <span class="text-featurette">Upcoming Events</span>
+        <span class="item-note light">{{ upcoming.length || 'NONE' }}</span>
+      </ion-item>
+      <ion-item ng-repeat="p in upcoming">
+        <span>{{ p.title }}</span>
+        <span class="item-note">
+          {{ p.date | date }}
+        </span>
       </ion-item>
     </ion-list>
 
