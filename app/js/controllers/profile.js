@@ -1,6 +1,6 @@
 angular.module('app')
 
-.controller('ProfileCtrl', function ($scope, localStorageService, UsersResource, UserService) {
+.controller('ProfileCtrl', function ($scope, $state, localStorageService, UsersResource, UserService) {
 
   $scope.user = UserService.user();
 
@@ -26,6 +26,10 @@ angular.module('app')
 
   $scope.logout = function () {
     UserService.logout();
+  };
+
+  $scope.viewPitch = function (id) {
+    $state.go('tab.profile-details', { id: id });
   };
 
   // Update user data

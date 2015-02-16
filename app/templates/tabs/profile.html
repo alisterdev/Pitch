@@ -1,4 +1,7 @@
-<ion-view title="{{ user.name.full }}">
+<ion-view title="Profile">
+  <ion-nav-title>
+    {{ user.name.full }}
+  </ion-nav-title>
   <ion-nav-buttons side="left">
     <button class="button button-clear button-positive">Edit</button>
   </ion-nav-buttons>
@@ -14,6 +17,18 @@
     </div>
 
     <ion-list>
+      <ion-item>
+        {{ user.community.title }}
+      </ion-item>
+      <ion-item>
+        {{ user.email }}
+      </ion-item>
+      <ion-item>
+        Pitching in since {{ user.created_at | date }}
+      </ion-item>
+    </ion-list>
+
+    <ion-list>
       <ion-item class="item-divider item-positive">
         <span class="text-featurette">Upcoming Events</span>
       </ion-item>
@@ -24,10 +39,10 @@
         <span class="text-featurette">Created Pitches</span>
         <span class="item-note">{{ data.pitches.created.length || 'NONE' }}</span>
       </ion-item>
-      <ion-item ng-repeat="pitch in data.pitches.created">
-        <span>{{ pitch.title }}</span>
+      <ion-item ng-repeat="p in data.pitches.created" on-tap="viewPitch(p.id)">
+        <span>{{ p.title }}</span>
         <span class="item-note">
-          {{ pitch.pitchers.contributed.length }} / {{ pitch.pitchers.required }}
+          {{ p.pitchers.contributed.length }} / {{ p.pitchers.required }}
         </span>
       </ion-item>
     </ion-list>
@@ -37,10 +52,10 @@
         <span class="text-featurette">Funded Pitches</span>
         <span class="item-note">{{ data.pitches.funded.length || 'NONE' }}</span>
       </ion-item>
-      <ion-item ng-repeat="pitch in data.pitches.funded">
-        <span>{{ pitch.title }}</span>
+      <ion-item ng-repeat="p in data.pitches.funded" on-tap="viewPitch(p.id)">
+        <span>{{ p.title }}</span>
         <span class="item-note">
-          {{ pitch.pitchers.contributed.length }} / {{ pitch.pitchers.required }}
+          {{ p.pitchers.contributed.length }} / {{ p.pitchers.required }}
         </span>
       </ion-item>
     </ion-list>

@@ -23,7 +23,10 @@ angular.module('app', ['ionic', 'ionic.contrib.icon', 'ngResource', 'LocalStorag
   template: '<img style="75px;" class="animate-loading" src="img/pitch.png" />'
 })
 
-.config(function ($stateProvider, $urlRouterProvider, $cordovaFacebookProvider, $httpProvider, localStorageServiceProvider) {
+.config(function ($stateProvider, $urlRouterProvider, $cordovaFacebookProvider, $httpProvider, $ionicConfigProvider, localStorageServiceProvider) {
+
+  // Configure Ionic
+  $ionicConfigProvider.backButton.icon('ion-ios-arrow-back');
 
   // Configure local storage
   localStorageServiceProvider.setPrefix('pitch');
