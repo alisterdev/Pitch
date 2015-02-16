@@ -60,6 +60,7 @@ angular.module('app')
     register: { method: 'POST', url: Utils.getServerUrl() + '/register', cache: false },
     oauth: { method: 'POST', url: Utils.getServerUrl() + '/oauth/access_token', cache: false },
     me: { method: 'GET', url: Utils.getApiUrl() + '/me', params: { access_token: function() { return UserService.user().accessToken; } }, cache: false },
+    profile: { method: 'GET', url: Utils.getApiUrl() + '/me/profile', params: { access_token: function() { return UserService.user().accessToken; } } },
     join: { method: 'POST', url:  Utils.getApiUrl() + '/me/join', params: { access_token: function() { return UserService.user().accessToken; } }, cache: false }
   });
 });

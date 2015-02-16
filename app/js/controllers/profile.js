@@ -7,21 +7,25 @@ angular.module('app')
   function updateUser () {
     var res = UsersResource.me();
 
-    res.$promise.then(function () {
-      // Make sure has access token to not lose access to API
-      if (typeof res.accessToken !== 'undefined') {
-        UserService.user(res);
-        $scope.user = res;
-      }
-    });
+    res.$promise
+      .then(function () {
+        // Make sure has access token to not lose access to API
+        if (typeof res.accessToken !== 'undefined') {
+          UserService.user(res);
+          $scope.user = res;
+        }
+      });
+
+    res = UsersResource.profile();
+
+    res.$promise
+      .then(function() {
+        $scope.data = res;
+      });
   }
 
   $scope.logout = function () {
     UserService.logout();
-  };
-
-  $scope.clearCache = function () {
-    localStorageService.clearAll();
   };
 
   // Update user data

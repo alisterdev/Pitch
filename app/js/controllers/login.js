@@ -63,9 +63,9 @@ angular.module('app')
             // Get profile picture
             $cordovaFacebook.api('/me/picture', { 
               redirect: false,
-              type: 'square',
-              width: '100px',
-              height: '100px'
+              type: 'normal',
+              width: '200',
+              height: '200'
             }).then(function(image) {
               if (image.data.url) {
                 // Register new user
