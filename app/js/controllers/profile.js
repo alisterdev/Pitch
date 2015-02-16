@@ -8,28 +8,28 @@ angular.module('app')
     if (newVal !== oldVal) {
       // Compile upcoming events.
       $scope.upcoming = getUpcomingEvents(newVal.pitches);
-
-      console.log($scope.upcoming);
     }
   });
 
   function getUpcomingEvents(pitches) {
     var today = new Date(),
-      upcoming = [];
+      upcoming = [],
+      count = 0,
+      max = 3;
 
     pitches.created.forEach(function(p) {
       if (new Date(p.date) >= today) {
         upcoming.push(p);
+        count++;
       }
     });
 
     pitches.funded.forEach(function(p) {
       if (new Date(p.date) >= today) {
         upcoming.push(p);
+        count++;
       }
     });
-
-    console.log(upcoming);
 
     return upcoming;
   }
