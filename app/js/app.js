@@ -114,16 +114,6 @@ angular.module('app', ['ionic', 'ionic.contrib.icon', 'ngResource', 'LocalStorag
     }
   })
 
-  .state('tab.pitch', {
-    url: '/pitch',
-    views: {
-      'tab-pitch': {
-        templateUrl: 'templates/tabs/pitch/create.html',
-        controller: 'PitchCtrl'
-      }
-    }
-  })
-
   .state('tab.search-details', {
     url: '/search/:id',
     views: {
@@ -134,12 +124,32 @@ angular.module('app', ['ionic', 'ionic.contrib.icon', 'ngResource', 'LocalStorag
     }
   })
 
+  .state('tab.pitch', {
+    url: '/pitch',
+    views: {
+      'tab-pitch': {
+        templateUrl: 'templates/tabs/pitch/create.html',
+        controller: 'PitchCtrl'
+      }
+    }
+  })
+
   .state('tab.profile', {
     url: '/profile',
     views: {
       'tab-profile': {
         templateUrl: 'templates/tabs/profile.html',
         controller: 'ProfileCtrl'
+      }
+    }
+  })
+
+  .state('tab.profile-details', {
+    url: '/profile/:id',
+    views: {
+      'tab-profile': {
+        templateUrl: 'templates/tabs/pitch/details.html',
+        controller: 'DetailsCtrl'
       }
     }
   });
