@@ -1,6 +1,6 @@
 angular.module('app')
 
-.controller('ProfileCtrl', function ($scope, $state, localStorageService, UsersResource, UserService, SentenceService) {
+.controller('ProfileCtrl', function ($scope, $state, $ionicModal, localStorageService, UsersResource, UserService, SentenceService) {
 
   $scope.user = UserService.user();
 
@@ -63,6 +63,20 @@ angular.module('app')
 
   $scope.viewPitch = function (id) {
     $state.go('tab.profile-details', { id: id });
+  };
+
+  // Edit modal
+  $scope.showModalEdit = function() {
+    $ionicModal.fromTemplateUrl('templates/modals/profile.html', {
+      scope: $scope
+    }).then(function(modal) {
+      $scope.modalEdit = modal;
+      $scope.modalEdit.show();
+    });
+  };
+
+  $scope.hideModalEdit = function() {
+    $scope.modalEdit.remove();
   };
 
   // Update user data

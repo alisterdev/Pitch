@@ -11,6 +11,14 @@
   margin-right: $content-padding;
 }
 
+.background-profile {
+  float: none;
+  margin: 0 auto;
+  margin-bottom: $content-padding;
+  width: 100px;
+  height: 100px;
+}
+
 .background-rounded {
   border-radius: 50%;
 }

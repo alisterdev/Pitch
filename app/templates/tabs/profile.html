@@ -3,7 +3,7 @@
     {{ user.name.full }}
   </ion-nav-title>
   <ion-nav-buttons side="primary">
-    <button class="button button-clear button-positive">Edit</button>
+    <button class="button button-clear button-positive" on-tap="showModalEdit()">Edit</button>
   </ion-nav-buttons>
   <ion-nav-buttons side="secondary">
     <button class="button button-clear button-positive button-bold" on-tap="logout()">Logout</button>
@@ -11,7 +11,7 @@
   <ion-content>
 
     <div class="text-center padding">
-      <img ng-src="{{ user.image }}">
+      <div class="background-thumbnail background-profile background-rounded" background-image="user.image"></div>
       <p>{{ memberSince }}</p>
     </div>
 
