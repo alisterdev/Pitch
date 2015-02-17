@@ -19,7 +19,7 @@ angular.module('app')
   }
 
   function getPitches () {
-    var res = PitchesResource.query({ category: $scope.selectedCategory.id });
+    var res = PitchesResource.queryCategory({ category: $scope.selectedCategory.id });
 
     res.$promise.then(function () {
       $scope.featured = res;
