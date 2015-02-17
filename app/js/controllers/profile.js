@@ -65,20 +65,6 @@ angular.module('app')
     $state.go('tab.profile-details', { id: id });
   };
 
-  // Edit modal
-  $scope.showModalEdit = function() {
-    $ionicModal.fromTemplateUrl('templates/modals/profile.html', {
-      scope: $scope
-    }).then(function(modal) {
-      $scope.modalEdit = modal;
-      $scope.modalEdit.show();
-    });
-  };
-
-  $scope.hideModalEdit = function() {
-    $scope.modalEdit.remove();
-  };
-
   // Update user data
   $scope.$on('$ionicView.enter', function () {
     updateUser();
