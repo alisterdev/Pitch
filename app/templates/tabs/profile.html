@@ -33,7 +33,7 @@
         <span class="text-featurette">Upcoming Events</span>
         <span class="item-note light">{{ upcoming.length || 'NONE' }}</span>
       </ion-item>
-      <ion-item class="item-avatar" ng-repeat="p in upcoming">
+      <ion-item class="item-avatar" ng-repeat="p in upcoming" on-tap="viewPitch(p.id)">
         <div class="background-thumbnail background-rounded background-avatar stable-bg" background-image="p.image"></div>
         <h2>{{ p.title }}</h2>
         <p>{{ p.date | date }}</p>
