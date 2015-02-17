@@ -2,12 +2,13 @@ angular.module('app')
 
 .controller('SearchCtrl', function ($scope, $state, PitchesResource, Utils) {
 
-  // Test data
-  $scope.trending = [
-    'hello world',
-    'shopping marathon',
-    '3 bananas for you'
-  ];
+  function getTrendingSearches() {
+    var res = PitchesResource.trending();
+
+    res.$httpPromise.then(function(res) {
+      $scope.trending = res;
+    });
+  }
 
   $scope.search = function (query) {
     $scope.query = query;
@@ -39,5 +40,7 @@ angular.module('app')
   $scope.viewPitch = function (id) {
     $state.go('tab.search-details', { id: id });
   };
+
+  getTrendingSearches();
 
 });
