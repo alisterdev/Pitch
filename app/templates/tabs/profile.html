@@ -12,19 +12,17 @@
 
     <div class="text-center padding">
       <img ng-src="{{ user.image }}">
-      <p class="text-featurette">Member since {{ user.created_at | date }}</p>
-      <p class="text-featurette">{{ user.community.title }}</p>
+      <p>{{ memberSince }}</p>
     </div>
 
-    <ion-list>
-      <ion-item>
+    <ion-list class="text-center">
+      <ion-item class="item-icon-left">
+        <i class="icon ion-university"></i>
         {{ user.community.title }}
       </ion-item>
-      <ion-item>
+      <ion-item class="item-icon-left margin-bottom">
+        <i class="icon ion-email"></i>
         {{ user.email }}
-      </ion-item>
-      <ion-item>
-        Pitching in since {{ user.created_at | date }}
       </ion-item>
     </ion-list>
 

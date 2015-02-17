@@ -1,6 +1,6 @@
 angular.module('app')
 
-.controller('ProfileCtrl', function ($scope, $state, localStorageService, UsersResource, UserService) {
+.controller('ProfileCtrl', function ($scope, $state, localStorageService, UsersResource, UserService, SentenceService) {
 
   $scope.user = UserService.user();
 
@@ -38,11 +38,14 @@ angular.module('app')
     var res = UsersResource.me();
 
     res.$promise
-      .then(function () {
+      .then(function(res) {
         // Make sure has access token to not lose access to API
         if (typeof res.accessToken !== 'undefined') {
           UserService.user(res);
           $scope.user = res;
+
+          // Get random sentence
+          $scope.memberSince = SentenceService.getRandom(new Date($scope.user.created_at));
         }
       });
 
