@@ -5,8 +5,8 @@ angular.module('app')
   function getTrendingSearches() {
     var res = PitchesResource.trending();
 
-    res.$httpPromise.then(function(res) {
-      $scope.trending = res;
+    res.$promise.then(function(res) {
+      $scope.trending = res.data;
     });
   }
 
@@ -41,6 +41,10 @@ angular.module('app')
     $state.go('tab.search-details', { id: id });
   };
 
-  getTrendingSearches();
+  $scope.$on('$ionicView.enter', function() {
+    if (!$scope.trending) {
+      getTrendingSearches();
+    }
+  });
 
 });
